@@ -43,15 +43,16 @@ export function SignInForm({ callbackUrl }: Props) {
 		try {
 			setIsLoading(true)
 
-			const result = await signIn('credentials', {
+			const response = await signIn('credentials', {
 				redirect: false,
 				email: values.email,
 				password: values.password,
 			})
-			if (!result?.ok) {
+			if (!response?.ok) {
 				toast({
 					title: 'Something went wrong!',
-					description: result?.error,
+					description: response?.error,
+					variant: 'destructive',
 				})
 				return
 			}
@@ -67,6 +68,7 @@ export function SignInForm({ callbackUrl }: Props) {
 			toast({
 				title: 'Something went wrong!',
 				description: "We couldn't create your account. Please try again later!",
+				variant: 'destructive',
 			})
 		} finally {
 			setIsLoading(false)

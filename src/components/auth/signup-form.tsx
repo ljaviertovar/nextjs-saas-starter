@@ -1,5 +1,7 @@
 'use client'
 
+import { useState } from 'react'
+import { Prisma } from '@prisma/client'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 
@@ -13,7 +15,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useToast } from '@/components/ui/use-toast'
 
 import { registerUser } from '@/actions/auth-actions'
-import { useState } from 'react'
 
 const formSchema = z
 	.object({
@@ -51,24 +52,29 @@ export function SignUpForm() {
 	})
 
 	async function onSubmit(values: InputType) {
-		console.log(values)
 		try {
 			setIsLoading(true)
 			const { confirmPassword, ...user } = values
 
 			const response = await registerUser(user)
-
-			console.log({ response })
-
-			toast({
-				title: 'Account Created!',
-				description: 'Your account has been created successfully! You can now login.',
-			})
+			if ('error' in response) {
+				toast({
+					title: 'Something went wrong!',
+					description: response.error,
+					variant: 'success',
+				})
+			} else {
+				toast({
+					title: 'Account Created!',
+					description: 'Your account has been created successfully! You can now login.',
+				})
+			}
 		} catch (error) {
-			console.log({ error })
+			console.error(error)
 			toast({
 				title: 'Something went wrong!',
 				description: "We couldn't create your account. Please try again later!",
+				variant: 'destructive',
 			})
 		} finally {
 			setIsLoading(false)
