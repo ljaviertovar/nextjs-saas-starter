@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { Prisma } from '@prisma/client'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 

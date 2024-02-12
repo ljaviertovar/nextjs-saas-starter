@@ -9,8 +9,6 @@ import { UserNav } from './user-nav'
 export default function AuthButtons() {
 	const { data: session } = useSession()
 
-	console.log({ session })
-
 	return (
 		<div className='flex justify-end gap-4'>
 			{session && session.user ? (
