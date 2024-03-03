@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🏗️ Starter kit for build a SaaS
 
-## Getting Started
+![DALL·E 2024-01-07 21 59 30 - A highly detailed and ultra-realistic illustration of a programmer's room in a 1920x1080px, 16_9 aspect ratio  The room features an advanced tech setu](https://github.com/ljaviertovar/nextjs-saas-starter/assets/34925280/ba29ba5c-fb71-48c6-8507-7500f59e3e04)
 
-First, run the development server:
+### Front-end
+* Next js
+* Shadcn/ui
+* React Hook Form
+* Zod
+ 
+### Back-end
+* Auth.js
+* Prisma
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Installig
+
+```
+pnpm run install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Running app
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+pnpm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```
+npx prisma studio
+```
 
-## Learn More
+<hr>
 
-To learn more about Next.js, take a look at the following resources:
+This project is explained in the following posts:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+👤 [Authentication](https://hackernoon.com/how-to-implement-authentication-in-nextjs-14-with-nextauthjs-shadcnui-react-hook-form-and-zod)
