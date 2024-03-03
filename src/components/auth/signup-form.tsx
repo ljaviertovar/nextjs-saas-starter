@@ -42,6 +42,7 @@ const formSchema = z
 type InputType = z.infer<typeof formSchema>
 
 export function SignUpForm() {
+	const [passStrength, setPassStrength] = useState(0)
 	const [isLoading, setIsLoading] = useState(false)
 	const { toast } = useToast()
 
