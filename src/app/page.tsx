@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 
 import AuthButtons from '@/components/auth/auth-buttons'
+import TestEmailButton from '@/components/test-email-button'
 
 export const metadata: Metadata = {
 	title: 'Starter Kit for SaaS - Launch your Service Today',
@@ -12,6 +13,7 @@ export default function Home() {
 	return (
 		<div className='flex min-h-screen flex-col items-center justify-between px-24 py-10'>
 			<div className='w-full'>
+				<TestEmailButton />
 				<AuthButtons />
 			</div>
 

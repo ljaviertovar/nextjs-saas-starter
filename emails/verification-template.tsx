@@ -1,0 +1,92 @@
+import * as React from 'react'
+
+import { Body, Button, Container, Head, Hr, Html, Img, Preview, Section, Text } from '@react-email/components'
+
+interface WelcomeTemplateProps {
+	userFirstname: string
+}
+
+export const WelcomeTemplate = ({ userFirstname }: WelcomeTemplateProps) => (
+	<Html>
+		<Head />
+		<Preview>The sales intelligence platform that helps you uncover qualified leads.</Preview>
+		<Body style={main}>
+			<Container style={container}>
+				<Img
+					src='https://res.cloudinary.com/dbwpoihqk/image/upload/v1710118456/taggy/assets/my-saas.png'
+					alt='My SaaS'
+					style={logo}
+				/>
+				<Text style={paragraph}>Hi {userFirstname},</Text>
+				<Text style={paragraph}>Welcome to My SaaS, the starter kit that helps you build your SaaS faster.</Text>
+				<Section style={btnContainer}>
+					<Button
+						style={button}
+						href='https://getkoala.com'
+					>
+						Get started
+					</Button>
+				</Section>
+				<Text style={paragraph}>
+					Best,
+					<br />
+					My SaaS team
+				</Text>
+				<Hr style={hr} />
+				<Text style={footer}>Something in the footer.</Text>
+			</Container>
+		</Body>
+	</Html>
+)
+
+WelcomeTemplate.PreviewProps = {
+	userFirstname: 'Alan',
+} as WelcomeTemplateProps
+
+export default WelcomeTemplate
+
+const main = {
+	backgroundColor: '#020817',
+	color: '#ffffff',
+	fontFamily:
+		'-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
+}
+
+const container = {
+	margin: '0 auto',
+	padding: '20px 0 48px',
+}
+
+const logo = {
+	margin: '0 auto',
+}
+
+const paragraph = {
+	fontSize: '16px',
+	lineHeight: '26px',
+}
+
+const btnContainer = {
+	textAlign: 'center' as const,
+}
+
+const button = {
+	backgroundColor: '#3576DF',
+	borderRadius: '3px',
+	color: '#fff',
+	fontSize: '16px',
+	textDecoration: 'none',
+	textAlign: 'center' as const,
+	display: 'block',
+	padding: '12px',
+}
+
+const hr = {
+	borderColor: '#cccccc',
+	margin: '20px 0',
+}
+
+const footer = {
+	color: '#8898aa',
+	fontSize: '12px',
+}
