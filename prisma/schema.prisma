@@ -42,9 +42,11 @@ model User {
   id            String    @id @default(cuid())
   username      String
   password      String
+  resetPasswordToken String? @unique
+  resetPasswordTokenExpiry DateTime?
   email         String   @unique
   emailVerified Boolean  @default(false)
-  emailVerifiedToken  String? @unique
+  emailVerificationToken  String? @unique
   phone         String?
   image         String?
   accounts      Account[]

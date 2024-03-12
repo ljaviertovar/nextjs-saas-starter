@@ -2,11 +2,16 @@ import * as React from 'react'
 
 import { Body, Button, Container, Head, Hr, Html, Img, Preview, Section, Text } from '@react-email/components'
 
-interface WelcomeTemplateProps {
-	userFirstname: string
+import { getBaseUrl } from '@/utils'
+
+const baseUrl = getBaseUrl()
+
+interface VerificationTemplateProps {
+	email: string
+	emailVerificationToken: string
 }
 
-export const WelcomeTemplate = ({ userFirstname }: WelcomeTemplateProps) => (
+export const VerificationTemplate = ({ email, emailVerificationToken }: VerificationTemplateProps) => (
 	<Html>
 		<Head />
 		<Preview>The sales intelligence platform that helps you uncover qualified leads.</Preview>
@@ -17,21 +22,16 @@ export const WelcomeTemplate = ({ userFirstname }: WelcomeTemplateProps) => (
 					alt='My SaaS'
 					style={logo}
 				/>
-				<Text style={paragraph}>Hi {userFirstname},</Text>
-				<Text style={paragraph}>Welcome to My SaaS, the starter kit that helps you build your SaaS faster.</Text>
+				<Text style={paragraph}>Verify email for {email},</Text>
+				<Text style={paragraph}>To verify your email, click on this link:</Text>
 				<Section style={btnContainer}>
 					<Button
 						style={button}
-						href='https://getkoala.com'
+						href={`${baseUrl}/auth/verify-email?token=${emailVerificationToken}`}
 					>
-						Get started
+						Click here to verify
 					</Button>
 				</Section>
-				<Text style={paragraph}>
-					Best,
-					<br />
-					My SaaS team
-				</Text>
 				<Hr style={hr} />
 				<Text style={footer}>Something in the footer.</Text>
 			</Container>
@@ -39,11 +39,11 @@ export const WelcomeTemplate = ({ userFirstname }: WelcomeTemplateProps) => (
 	</Html>
 )
 
-WelcomeTemplate.PreviewProps = {
-	userFirstname: 'Alan',
-} as WelcomeTemplateProps
+// VerificationTemplate.PreviewProps = {
+// 	userFirstname: 'Alan',
+// } as VerificationTemplateProps
 
-export default WelcomeTemplate
+export default VerificationTemplate
 
 const main = {
 	backgroundColor: '#020817',

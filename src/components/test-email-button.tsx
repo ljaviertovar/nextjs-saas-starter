@@ -1,12 +1,17 @@
 'use client'
-
-import { sendActivationEmail } from '@/actions/email-actions'
+import React from 'react'
+import { sendEmail } from '@/actions/email-actions'
+import VerificationTemplate from '../../emails/verification-template'
 
 export default function TestEmailButton() {
 	const handleSubmit = async () => {
-		sendActivationEmail({
+		sendEmail({
 			to: ['luisjavier_tovar@outlook.com', 'lljjtt178@gmail.com'],
-			subject: 'Welcome to My SaaS',
+			subject: 'Verify your email address',
+			react: VerificationTemplate({
+				email: 'lljjtt178@gmail.com',
+				emailVerificationToken: 'gkjgjgkj',
+			}) as React.ReactElement,
 		})
 	}
 
