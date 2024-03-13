@@ -1,3 +1,4 @@
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import prisma from '@/lib/prisma'
 
 interface VerifyEmailPageProps {
@@ -13,7 +14,20 @@ export default async function VerifyEmailPage({ searchParams }: VerifyEmailPageP
 		})
 
 		if (!user) {
-			return <div>Invalid token</div>
+			return (
+				<Card>
+					<CardHeader>
+						<CardTitle>Card Title</CardTitle>
+						<CardDescription>Card Description</CardDescription>
+					</CardHeader>
+					<CardContent>
+						<p>Card Content</p>
+					</CardContent>
+					<CardFooter>
+						<p>Card Footer</p>
+					</CardFooter>
+				</Card>
+			)
 		}
 
 		await prisma.user.update({

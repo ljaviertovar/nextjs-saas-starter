@@ -39,10 +39,6 @@ export const VerificationTemplate = ({ email, emailVerificationToken }: Verifica
 	</Html>
 )
 
-// VerificationTemplate.PreviewProps = {
-// 	userFirstname: 'Alan',
-// } as VerificationTemplateProps
-
 export default VerificationTemplate
 
 const main = {
