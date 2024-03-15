@@ -66,14 +66,14 @@ export function SignUpForm() {
 			} else {
 				toast({
 					title: 'Account Created!',
-					description: 'Your account has been created successfully! You can now login.',
+					description: 'Your account has been created successfully! Please check your email for verification.',
 				})
 			}
 		} catch (error) {
 			console.error(error)
 			toast({
 				title: 'Something went wrong!',
-				description: "We couldn't create your account. Please try again later!",
+				description: `We couldn't create your account.\nPlease try again later!`,
 				variant: 'destructive',
 			})
 		} finally {

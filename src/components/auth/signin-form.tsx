@@ -49,6 +49,15 @@ export function SignInForm({ callbackUrl }: Props) {
 				password: values.password,
 			})
 			if (!response?.ok) {
+				if (response?.error === 'EmailNotVerified') {
+					toast({
+						title: 'Please, verify your email first.',
+						variant: 'warning',
+					})
+
+					return
+				}
+
 				toast({
 					title: 'Something went wrong!',
 					description: response?.error,

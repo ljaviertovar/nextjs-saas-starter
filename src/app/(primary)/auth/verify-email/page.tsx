@@ -31,7 +31,7 @@ export default async function VerifyEmailPage({ searchParams }: VerifyEmailPageP
 				},
 			})
 
-			message = `Email verified! ${user.email}`
+			message = `Email verified!\n${user.email}`
 			verified = true
 		}
 	} else {
@@ -49,7 +49,7 @@ export default async function VerifyEmailPage({ searchParams }: VerifyEmailPageP
 						{verified ? <EmailCheckIcon size={48} /> : <EmailWarningIcon size={48} />}
 					</div>
 					<p
-						className='text-muted-foreground'
+						className='text-lg text-muted-foreground'
 						style={{ textWrap: 'balance' }}
 					>
 						{message}

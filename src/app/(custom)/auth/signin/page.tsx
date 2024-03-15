@@ -18,6 +18,7 @@ interface Props {
 }
 
 export default function SignInPage({ searchParams }: Props) {
+	console.log({ searchParams })
 	return (
 		<>
 			<div className='lg:h-screen flex flex-col-reverse lg:flex-row items-center justify-center px-0'>

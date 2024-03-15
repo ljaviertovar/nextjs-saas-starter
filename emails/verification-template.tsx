@@ -7,11 +7,11 @@ import { getBaseUrl } from '@/utils'
 const baseUrl = getBaseUrl()
 
 interface VerificationTemplateProps {
-	email: string
+	username: string
 	emailVerificationToken: string
 }
 
-export const VerificationTemplate = ({ email, emailVerificationToken }: VerificationTemplateProps) => (
+export const VerificationTemplate = ({ username, emailVerificationToken }: VerificationTemplateProps) => (
 	<Html>
 		<Head />
 		<Preview>The sales intelligence platform that helps you uncover qualified leads.</Preview>
@@ -22,8 +22,9 @@ export const VerificationTemplate = ({ email, emailVerificationToken }: Verifica
 					alt='My SaaS'
 					style={logo}
 				/>
-				<Text style={paragraph}>Verify email for {email},</Text>
-				<Text style={paragraph}>To verify your email, click on this link:</Text>
+				<Text style={title}>Hi {username}!</Text>
+				<Text style={paragraph}>Welcome to Starter Kit for build a SaaS</Text>
+				<Text style={paragraph}>Please verify your email, with the link below:</Text>
 				<Section style={btnContainer}>
 					<Button
 						style={button}
@@ -57,6 +58,13 @@ const logo = {
 	margin: '0 auto',
 }
 
+const title = {
+	textAlign: 'center' as const,
+	fontWeight: 'bold' as const,
+	fontSize: '24px',
+	lineHeight: '34px',
+}
+
 const paragraph = {
 	fontSize: '16px',
 	lineHeight: '26px',
@@ -68,7 +76,7 @@ const btnContainer = {
 
 const button = {
 	backgroundColor: '#3576DF',
-	borderRadius: '3px',
+	borderRadius: '1rem',
 	color: '#fff',
 	fontSize: '16px',
 	textDecoration: 'none',
