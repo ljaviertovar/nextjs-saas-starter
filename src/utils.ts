@@ -3,5 +3,5 @@ export function getBaseUrl() {
 		? `https://www.MY-CUSTOM-DOMAIN.com`
 		: process.env.VERCEL_URL
 		? `https://${process.env.VERCEL_URL}`
-		: `http://localhost:3001`
+		: `http://localhost:3000`
 }
