@@ -57,7 +57,6 @@ export function SignUpForm() {
 			const { confirmPassword, ...user } = values
 
 			const response = await registerUser(user)
-			console.log({ response })
 
 			if ('error' in response) {
 				toast({
