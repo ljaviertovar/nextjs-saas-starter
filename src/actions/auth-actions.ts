@@ -1,14 +1,15 @@
 'use server'
 
-import { Prisma, User } from '@prisma/client'
-
-import * as bcrypt from 'bcrypt'
-import crypto from 'crypto'
+import React from 'react'
 
 import { prisma } from '@/lib/prisma'
+import { Prisma, User } from '@prisma/client'
+import * as bcrypt from 'bcrypt'
+
 import { sendEmail } from './email-actions'
 import VerificationTemplate from '../../emails/verification-template'
-import React from 'react'
+
+import { generateSecureToken } from '@/utils'
 
 export async function registerUser(user: Partial<User>) {
 	try {
@@ -20,7 +21,7 @@ export async function registerUser(user: Partial<User>) {
 		})
 
 		// Send verification email
-		const emailVerificationToken = crypto.randomBytes(32).toString('base64url')
+		const emailVerificationToken = generateSecureToken()
 
 		await prisma.user.update({
 			where: {

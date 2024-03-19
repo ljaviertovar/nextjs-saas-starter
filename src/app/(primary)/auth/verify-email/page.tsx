@@ -46,7 +46,7 @@ export default async function VerifyEmailPage({ searchParams }: VerifyEmailPageP
 				</CardHeader>
 				<CardContent>
 					<div className='w-full grid place-content-center py-4'>
-						{verified ? <EmailCheckIcon size={48} /> : <EmailWarningIcon size={48} />}
+						{verified ? <EmailCheckIcon size={56} /> : <EmailWarningIcon size={56} />}
 					</div>
 					<p
 						className='text-lg text-muted-foreground'

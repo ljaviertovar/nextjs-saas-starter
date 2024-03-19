@@ -24,7 +24,6 @@
 		"check-password-strength": "^2.0.7",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.1.0",
-		"crypto": "^1.0.1",
 		"lucide-react": "^0.314.0",
 		"next": "14.0.4",
 		"next-auth": "^4.24.5",
