@@ -23,7 +23,7 @@ export const VerificationTemplate = ({ username, emailVerificationToken }: Verif
 					style={logo}
 				/>
 				<Text style={title}>Hi {username}!</Text>
-				<Text style={paragraph}>Welcome to Starter Kit for build a SaaS</Text>
+				<Text style={title}>Welcome to Starter Kit for build a SaaS</Text>
 				<Text style={paragraph}>Please verify your email, with the link below:</Text>
 				<Section style={btnContainer}>
 					<Button
