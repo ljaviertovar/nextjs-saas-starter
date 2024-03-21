@@ -33,7 +33,7 @@ export async function registerUser(user: Partial<User>) {
 		})
 
 		await sendEmail({
-			to: ['luisjavier_tovar@outlook.com', createdUser.email],
+			to: ['your Resend registered email', createdUser.email],
 			subject: 'Verify your email address',
 			react: React.createElement(VerificationTemplate, { username: createdUser.username, emailVerificationToken }),
 		})
