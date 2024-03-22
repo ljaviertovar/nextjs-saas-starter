@@ -1,14 +1,19 @@
+import { redirect } from 'next/navigation'
+import { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Metadata } from 'next'
+
+import { getServerSession } from 'next-auth'
 
 import { Button } from '@/components/ui/button'
 import { SignInForm } from '@/components/auth/signin-form'
 
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+
 export const metadata: Metadata = {
-	title: 'Sign up for My SaaS - Start Now',
+	title: 'Sign In for My SaaS',
 	description:
-		'Sign up today at My SaaS to access a personalized [type of service or product] experience. Enjoy exclusive features like [feature 1], [feature 2], and [feature 3]. Join our community and start taking advantage of all the benefits of membership from day one - creating your account is fast, easy and secure!',
+		'Sign in to your account to access your dashboard, manage your account, and more. If you do not have an account, sign up today.',
 }
 
 interface Props {
@@ -17,7 +22,12 @@ interface Props {
 	}
 }
 
-export default function SignInPage({ searchParams }: Props) {
+export default async function SignInPage({ searchParams }: Props) {
+	const session = await getServerSession(authOptions)
+	if (session && session.user) {
+		redirect(searchParams.callbackUrl || '/')
+	}
+
 	return (
 		<>
 			<div className='lg:h-screen flex flex-col-reverse lg:flex-row items-center justify-center px-0'>
