@@ -7,10 +7,12 @@
 * Shadcn/ui
 * React Hook Form
 * Zod
+* React Email
  
 ### Back-end
 * Auth.js
 * Prisma
+* Resend
 
 ### Installig
 
@@ -32,4 +34,4 @@ npx prisma studio
 
 This project is explained in the following posts:
 
-👤 [Authentication](https://hackernoon.com/how-to-implement-authentication-in-nextjs-14-with-nextauthjs-shadcnui-react-hook-form-and-zod)
+👤 [Implementing Authentication in Next.js 14 with NextAuth.js, Shadcn/ui, react-hook-form, and Zod](https://hackernoon.com/how-to-implement-authentication-in-nextjs-14-with-nextauthjs-shadcnui-react-hook-form-and-zod)
