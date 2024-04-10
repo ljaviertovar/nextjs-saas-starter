@@ -1,6 +1,6 @@
 import EmailCheckIcon from '@/components/icons/email-check-icon'
 import EmailWarningIcon from '@/components/icons/emaill-warning-icon'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import prisma from '@/lib/prisma'
 import Link from 'next/link'
 
