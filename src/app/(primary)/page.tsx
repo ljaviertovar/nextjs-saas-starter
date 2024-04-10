@@ -42,7 +42,7 @@ export default function Home() {
 
 			<section className='container mx-auto max-w-7xl'>
 				<div className='w-full mb-8'>Tutorials on how it is built:</div>
-				<div className='mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left'>
+				<div className='mb-32 grid gap-2 text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left'>
 					<a
 						href='https://hackernoon.com/how-to-implement-authentication-in-nextjs-14-with-nextauthjs-shadcnui-react-hook-form-and-zod'
 						className='group rounded-lg border border-transparent px-5 py-4 transition-colors hover:bg-gray-100 dark:border-neutral-700 hover:dark:bg-neutral-800/30'
@@ -50,7 +50,20 @@ export default function Home() {
 						rel='noopener noreferrer'
 					>
 						<p className={`mb-3 text-2xl font-semibold`}>
-							Authentication{' '}
+							Authentication <span className='text-sm inline-block'>Part 1</span>{' '}
+							<span className='inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none'>
+								-&gt;
+							</span>
+						</p>
+					</a>
+					<a
+						href='https://hackernoon.com/how-to-send-email-verification-in-nextjs-14-with-nextauthjs-resend-and-react-email'
+						className='group rounded-lg border border-transparent px-5 py-4 transition-colors hover:bg-gray-100 dark:border-neutral-700 hover:dark:bg-neutral-800/30'
+						target='_blank'
+						rel='noopener noreferrer'
+					>
+						<p className={`mb-3 text-2xl font-semibold`}>
+							Authentication <span className='text-sm inline-block'>Part 2</span>{' '}
 							<span className='inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none'>
 								-&gt;
 							</span>
