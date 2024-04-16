@@ -1,32 +1,24 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import { passwordStrength } from 'check-password-strength'
 
 import { Form, FormControl, FormField, FormItem, FormMessage } from '../ui/form'
-import PasswordStrength from './password-strength'
-import { Button } from '../ui/button'
 import { Input } from '../ui/input'
+import { Button } from '../ui/button'
 import { Icons } from '../icons'
 
+import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useToast } from '../ui/use-toast'
 
-import { useToast } from '@/components/ui/use-toast'
+import PasswordStrength from './password-strength'
 
-import { registerUser } from '@/actions/auth-actions'
+import { resetPassword } from '@/actions/auth-actions'
 
 const formSchema = z
 	.object({
-		username: z
-			.string({
-				required_error: 'Username is required',
-			})
-			.min(2, 'User name must have at least 2 characters')
-			.max(12, 'Username must be up to 12 characters')
-			.regex(new RegExp('^[a-zA-Z0-9]+$'), 'No special characters allowed!'),
-		email: z.string({ required_error: 'Email is required' }).email('Please enter a valid email address'),
 		password: z
 			.string({ required_error: 'Password is required' })
 			.min(6, 'Password must have at least 6 characters')
@@ -39,7 +31,7 @@ const formSchema = z
 		confirmPassword: z
 			.string({ required_error: 'Confirm your password is required' })
 			.min(6, 'Password must have at least 6 characters')
-			.max(20, 'Password must be up to 20 characters'),
+			.max(32, 'Password must be up to 32 characters'),
 	})
 	.refine(values => values.password === values.confirmPassword, {
 		message: "Password and Confirm Password doesn't match!",
@@ -48,7 +40,11 @@ const formSchema = z
 
 type InputType = z.infer<typeof formSchema>
 
-export function SignUpForm() {
+interface Props {
+	jwtUserId: string
+}
+
+export function ResetPasswordForm({ jwtUserId }: Props) {
 	const [passStrength, setPassStrength] = useState(0)
 	const [isVisiblePass, setIsVisiblePass] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
@@ -69,28 +65,28 @@ export function SignUpForm() {
 	async function onSubmit(values: InputType) {
 		try {
 			setIsLoading(true)
-			const { confirmPassword, ...user } = values
+			const result = await resetPassword(jwtUserId, values.password)
+			if (result === 'success') {
+				form.setValue('password', '')
+				form.setValue('confirmPassword', '')
 
-			const response = await registerUser(user)
-
-			if ('error' in response) {
 				toast({
-					title: 'Something went wrong!',
-					description: response.error,
-					variant: 'destructive',
+					title: 'Password Reset Successfully!',
+					description: `You can now signin with your new password.`,
+					variant: 'success',
 				})
 			} else {
 				toast({
-					title: 'Your account has been created! ',
-					description: 'Please check your email for verification.',
-					variant: 'success',
+					title: 'Something went wrong!',
+					description: `We couldn't reset your password.\nPlease try again later!`,
+					variant: 'destructive',
 				})
 			}
 		} catch (error) {
 			console.error(error)
 			toast({
 				title: 'Something went wrong!',
-				description: `We couldn't create your account.\nPlease try again later!`,
+				description: `We couldn't reset your password.\nPlease try again later!`,
 				variant: 'destructive',
 			})
 		} finally {
@@ -102,52 +98,6 @@ export function SignUpForm() {
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(onSubmit)}>
 				<div className='grid gap-2'>
-					<FormField
-						control={form.control}
-						name='username'
-						render={({ field }) => (
-							<FormItem>
-								<FormControl>
-									<div className='flex items-center gap-2'>
-										<Icons.user
-											className={`${form.formState.errors.username ? 'text-destructive' : 'text-muted-foreground'} `}
-										/>
-										<Input
-											placeholder='Your Username'
-											className={`${form.formState.errors.username && 'border-destructive bg-destructive/30'}`}
-											{...field}
-										/>
-									</div>
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-
-					<div className='grid gap-1'>
-						<FormField
-							control={form.control}
-							name='email'
-							render={({ field }) => (
-								<FormItem>
-									<FormControl>
-										<div className='flex items-center gap-2'>
-											<Icons.email
-												className={`${form.formState.errors.email ? 'text-destructive' : 'text-muted-foreground'} `}
-											/>
-											<Input
-												type='email'
-												placeholder='Your Email'
-												className={`${form.formState.errors.email && 'border-destructive bg-destructive/30'}`}
-												{...field}
-											/>
-										</div>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
-					</div>
 					<div className='grid gap-1'>
 						<FormField
 							control={form.control}
@@ -161,7 +111,7 @@ export function SignUpForm() {
 											/>
 											<Input
 												type={isVisiblePass ? 'text' : 'password'}
-												placeholder='Your Password'
+												placeholder='Your new Password'
 												className={`${form.formState.errors.password && 'border-destructive bg-destructive/30'}`}
 												{...field}
 											/>
@@ -205,7 +155,7 @@ export function SignUpForm() {
 											/>
 											<Input
 												type='password'
-												placeholder='Confirm your Password'
+												placeholder='Confirm your new Password'
 												className={`${form.formState.errors.confirmPassword && 'border-destructive bg-destructive/30'}`}
 												{...field}
 											/>
@@ -216,12 +166,13 @@ export function SignUpForm() {
 							)}
 						/>
 					</div>
+
 					<Button
 						className='text-foreground mt-4'
 						disabled={isLoading}
 					>
 						{isLoading && <Icons.spinner className='mr-2 h-4 w-4 animate-spin' />}
-						Sign Up
+						Submit
 					</Button>
 				</div>
 			</form>
