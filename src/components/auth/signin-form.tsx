@@ -14,6 +14,7 @@ import { Icons } from '../icons'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import { useToast } from '@/components/ui/use-toast'
+import Link from 'next/link'
 
 const formSchema = z.object({
 	email: z.string({ required_error: 'Please enter your email' }).email('Please enter a valid email address'),
@@ -51,7 +52,8 @@ export function SignInForm({ callbackUrl }: Props) {
 			if (!response?.ok) {
 				if (response?.error === 'EmailNotVerified') {
 					toast({
-						title: 'Please, verify your email first.',
+						title: 'Email not verified',
+						description: 'Please, verify your email first.',
 						variant: 'warning',
 					})
 
@@ -76,7 +78,7 @@ export function SignInForm({ callbackUrl }: Props) {
 			console.log({ error })
 			toast({
 				title: 'Something went wrong!',
-				description: "We couldn't create your account. Please try again later!",
+				description: 'Your account could not be accessed. Please try again later!',
 				variant: 'destructive',
 			})
 		} finally {
@@ -136,6 +138,15 @@ export function SignInForm({ callbackUrl }: Props) {
 							)}
 						/>
 					</div>
+
+					<p className='text-center text-sm text-muted-foreground'>
+						<Link
+							href='/auth/forgot-password'
+							className='underline underline-offset-4 hover:text-primary'
+						>
+							Forgot Password?
+						</Link>
+					</p>
 
 					<Button
 						className='text-foreground mt-4'

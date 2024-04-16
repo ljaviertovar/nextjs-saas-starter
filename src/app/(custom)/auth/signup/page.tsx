@@ -5,13 +5,23 @@ import { Metadata } from 'next'
 import { SignUpForm } from '@/components/auth/signup-form'
 import { Button } from '@/components/ui/button'
 
+import { isLogged } from '@/utils'
+
 export const metadata: Metadata = {
 	title: 'Sign up for My SaaS - Start Now',
 	description:
 		'Sign up today at My SaaS to access a personalized [type of service or product] experience. Enjoy exclusive features like [feature 1], [feature 2], and [feature 3]. Join our community and start taking advantage of all the benefits of membership from day one - creating your account is fast, easy and secure!',
 }
 
-export default function signUpPage() {
+interface Props {
+	searchParams: {
+		callbackUrl?: string
+	}
+}
+
+export default async function signUpPage({ searchParams }: Props) {
+	await isLogged(searchParams.callbackUrl as string)
+
 	return (
 		<>
 			<div className='lg:h-screen flex flex-col-reverse lg:flex-row items-center justify-center px-0'>

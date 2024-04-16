@@ -1,19 +1,16 @@
-import { redirect } from 'next/navigation'
-import { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import { Metadata } from 'next'
 
-import { getServerSession } from 'next-auth'
-
+import { SignUpForm } from '@/components/auth/signup-form'
 import { Button } from '@/components/ui/button'
-import { SignInForm } from '@/components/auth/signin-form'
 
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import { isLogged } from '@/utils'
 
 export const metadata: Metadata = {
-	title: 'Sign In for My SaaS',
+	title: 'Sign up for My SaaS - Start Now',
 	description:
-		'Sign in to your account to access your dashboard, manage your account, and more. If you do not have an account, sign up today.',
+		'Sign up today at My SaaS to access a personalized [type of service or product] experience. Enjoy exclusive features like [feature 1], [feature 2], and [feature 3]. Join our community and start taking advantage of all the benefits of membership from day one - creating your account is fast, easy and secure!',
 }
 
 interface Props {
@@ -22,11 +19,8 @@ interface Props {
 	}
 }
 
-export default async function SignInPage({ searchParams }: Props) {
-	const session = await getServerSession(authOptions)
-	if (session && session.user) {
-		redirect(searchParams.callbackUrl || '/')
-	}
+export default async function signUpPage({ searchParams }: Props) {
+	await isLogged(searchParams.callbackUrl as string)
 
 	return (
 		<>
@@ -91,15 +85,32 @@ export default async function SignInPage({ searchParams }: Props) {
 							variant={'secondary'}
 							asChild
 						>
-							<Link href='/auth/signup'>Sign Up</Link>
+							<Link href='/auth/signin'>Sign In</Link>
 						</Button>
 					</div>
 					<div className='w-full max-w-[375px]'>
 						<div className='flex flex-col text-center my-6 space-y-2'>
-							<h1 className='text-2xl font-semibold tracking-tight'>Sign in to your account</h1>
-							<p className='text-sm text-muted-foreground'>Enter the info below to sign in your account</p>
+							<h1 className='text-2xl font-semibold tracking-tight'>Create an account</h1>
+							<p className='text-sm text-muted-foreground'>Enter the info below to create your account</p>
 						</div>
-						<SignInForm callbackUrl={searchParams.callbackUrl} />
+						<SignUpForm />
+						<p className='px-8 py-6 text-center text-sm text-muted-foreground'>
+							By clicking continue, you agree to our{' '}
+							<Link
+								href='/terms'
+								className='underline underline-offset-4 hover:text-primary'
+							>
+								Terms of Service
+							</Link>{' '}
+							and{' '}
+							<Link
+								href='/privacy'
+								className='underline underline-offset-4 hover:text-primary'
+							>
+								Privacy Policy
+							</Link>
+							.
+						</p>
 					</div>
 				</div>
 			</div>
