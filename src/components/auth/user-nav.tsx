@@ -1,4 +1,5 @@
-import Link from 'next/link'
+import { signOut } from 'next-auth/react'
+import { User } from '@prisma/client'
 
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { Button } from '../ui/button'
@@ -10,7 +11,6 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from '../ui/dropdown-menu'
-import { User } from '@prisma/client'
 
 interface Props {
 	user: User
@@ -46,12 +46,13 @@ export function UserNav({ user }: Props) {
 				</DropdownMenuLabel>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem>
-					<Link
-						href={'/api/auth/signout'}
+					<Button
+						variant={'ghost'}
 						className='w-full'
+						onClick={() => signOut({ callbackUrl: '/auth/signin' })}
 					>
 						Sign Out
-					</Link>
+					</Button>
 				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>
