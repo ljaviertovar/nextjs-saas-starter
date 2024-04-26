@@ -14,6 +14,7 @@ import { Icons } from '../icons'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import { useToast } from '@/components/ui/use-toast'
+import Link from 'next/link'
 
 const formSchema = z.object({
 	email: z.string({ required_error: 'Please enter your email' }).email('Please enter a valid email address'),
@@ -29,7 +30,11 @@ interface Props {
 }
 
 export function SignInForm({ callbackUrl }: Props) {
+	const [isVisiblePass, setIsVisiblePass] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
+
+	const toggleVisblePass = () => setIsVisiblePass(prev => !prev)
+
 	const { toast } = useToast()
 
 	const router = useRouter()
@@ -51,7 +56,8 @@ export function SignInForm({ callbackUrl }: Props) {
 			if (!response?.ok) {
 				if (response?.error === 'EmailNotVerified') {
 					toast({
-						title: 'Please, verify your email first.',
+						title: 'Email not verified',
+						description: 'Please, verify your email first.',
 						variant: 'warning',
 					})
 
@@ -76,7 +82,7 @@ export function SignInForm({ callbackUrl }: Props) {
 			console.log({ error })
 			toast({
 				title: 'Something went wrong!',
-				description: "We couldn't create your account. Please try again later!",
+				description: 'Your account could not be accessed. Please try again later!',
 				variant: 'destructive',
 			})
 		} finally {
@@ -117,25 +123,42 @@ export function SignInForm({ callbackUrl }: Props) {
 							control={form.control}
 							name='password'
 							render={({ field }) => (
-								<FormItem>
-									<FormControl>
-										<div className='flex items-center gap-2'>
-											<Icons.key
+								<FormControl>
+									<div className='flex items-center gap-2'>
+										<Icons.key
+											className={`${form.formState.errors.password ? 'text-destructive' : 'text-muted-foreground'} `}
+										/>
+										<Input
+											type={isVisiblePass ? 'text' : 'password'}
+											placeholder='Your Password'
+											className={`${form.formState.errors.password && 'border-destructive bg-destructive/30'}`}
+											{...field}
+										/>
+										{isVisiblePass ? (
+											<Icons.eyeOff
+												onClick={toggleVisblePass}
 												className={`${form.formState.errors.password ? 'text-destructive' : 'text-muted-foreground'} `}
 											/>
-											<Input
-												type='password'
-												placeholder='Your Password'
-												className={`${form.formState.errors.password && 'border-destructive bg-destructive/30'}`}
-												{...field}
+										) : (
+											<Icons.eye
+												onClick={toggleVisblePass}
+												className={`${form.formState.errors.password ? 'text-destructive' : 'text-muted-foreground'} `}
 											/>
-										</div>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
+										)}
+									</div>
+								</FormControl>
 							)}
 						/>
 					</div>
+
+					<p className='text-center text-sm text-muted-foreground'>
+						<Link
+							href='/auth/forgot-password'
+							className='underline underline-offset-4 hover:text-primary'
+						>
+							Forgot Password?
+						</Link>
+					</p>
 
 					<Button
 						className='text-foreground mt-4'

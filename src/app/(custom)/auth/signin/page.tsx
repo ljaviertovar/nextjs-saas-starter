@@ -1,14 +1,11 @@
-import { redirect } from 'next/navigation'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 
-import { getServerSession } from 'next-auth'
-
 import { Button } from '@/components/ui/button'
 import { SignInForm } from '@/components/auth/signin-form'
 
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import { isLogged } from '@/utils'
 
 export const metadata: Metadata = {
 	title: 'Sign In for My SaaS',
@@ -23,10 +20,7 @@ interface Props {
 }
 
 export default async function SignInPage({ searchParams }: Props) {
-	const session = await getServerSession(authOptions)
-	if (session && session.user) {
-		redirect(searchParams.callbackUrl || '/')
-	}
+	await isLogged(searchParams.callbackUrl as string)
 
 	return (
 		<>
