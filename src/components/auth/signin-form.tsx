@@ -30,7 +30,11 @@ interface Props {
 }
 
 export function SignInForm({ callbackUrl }: Props) {
+	const [isVisiblePass, setIsVisiblePass] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
+
+	const toggleVisblePass = () => setIsVisiblePass(prev => !prev)
+
 	const { toast } = useToast()
 
 	const router = useRouter()
@@ -119,22 +123,30 @@ export function SignInForm({ callbackUrl }: Props) {
 							control={form.control}
 							name='password'
 							render={({ field }) => (
-								<FormItem>
-									<FormControl>
-										<div className='flex items-center gap-2'>
-											<Icons.key
+								<FormControl>
+									<div className='flex items-center gap-2'>
+										<Icons.key
+											className={`${form.formState.errors.password ? 'text-destructive' : 'text-muted-foreground'} `}
+										/>
+										<Input
+											type={isVisiblePass ? 'text' : 'password'}
+											placeholder='Your Password'
+											className={`${form.formState.errors.password && 'border-destructive bg-destructive/30'}`}
+											{...field}
+										/>
+										{isVisiblePass ? (
+											<Icons.eyeOff
+												onClick={toggleVisblePass}
 												className={`${form.formState.errors.password ? 'text-destructive' : 'text-muted-foreground'} `}
 											/>
-											<Input
-												type='password'
-												placeholder='Your Password'
-												className={`${form.formState.errors.password && 'border-destructive bg-destructive/30'}`}
-												{...field}
+										) : (
+											<Icons.eye
+												onClick={toggleVisblePass}
+												className={`${form.formState.errors.password ? 'text-destructive' : 'text-muted-foreground'} `}
 											/>
-										</div>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
+										)}
+									</div>
+								</FormControl>
 							)}
 						/>
 					</div>
