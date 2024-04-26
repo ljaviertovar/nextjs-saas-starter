@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth/next'
 import { AuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
+import GoogleProvider from 'next-auth/providers/google'
 
 import * as bcrypt from 'bcrypt'
 
@@ -52,9 +53,34 @@ export const authOptions: AuthOptions = {
 				return userWithoutPass
 			},
 		}),
+		GoogleProvider({
+			clientId: process.env.GOOGLE_CLIENT_ID!,
+			clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+		}),
 	],
-
 	callbacks: {
+		async signIn({ account, profile }) {
+			if (!profile?.email) {
+				throw new Error('No email found in the Google account')
+			}
+
+			await prisma.user.upsert({
+				where: {
+					email: profile.email,
+				},
+				update: {
+					name: profile.name,
+					image: profile.image,
+				},
+				create: {
+					email: profile.email,
+					name: profile.name ?? '',
+					image: profile.image,
+					emailVerified: true,
+				},
+			})
+		},
+
 		async jwt({ token, user }) {
 			if (user) token.user = user as User
 			return token
