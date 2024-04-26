@@ -37,3 +37,5 @@ This project is explained in the following posts:
 👤 [Implementing Authentication in Next.js 14 with NextAuth.js, Shadcn/ui, react-hook-form, and Zod](https://hackernoon.com/how-to-implement-authentication-in-nextjs-14-with-nextauthjs-shadcnui-react-hook-form-and-zod)
 
 👤 [How to Send Email Verification in Next.js 14 With NextAuth.js, Resend, and React Email](https://hackernoon.com/how-to-send-email-verification-in-nextjs-14-with-nextauthjs-resend-and-react-email)
+
+👤 [Enhancing Password Security and Recovery with Next.js 14 and NextAuth.js](https://hackernoon.com/enhancing-password-security-and-recovery-with-nextjs-14-and-nextauthjs)
