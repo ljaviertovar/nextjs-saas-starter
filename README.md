@@ -1,6 +1,7 @@
 # 🏗️ Starter kit for build a SaaS
 
-![DALL·E 2024-01-07 21 59 30 - A highly detailed and ultra-realistic illustration of a programmer's room in a 1920x1080px, 16_9 aspect ratio  The room features an advanced tech setu](https://github.com/ljaviertovar/nextjs-saas-starter/assets/34925280/ba29ba5c-fb71-48c6-8507-7500f59e3e04)
+![image](https://github.com/ljaviertovar/nextjs-saas-starter/assets/34925280/8c3e9541-caa8-4d4c-8b32-df59187a87d4)
+
 
 ### Front-end
 * Next js
