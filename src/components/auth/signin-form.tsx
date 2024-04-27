@@ -1,12 +1,14 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { signIn } from 'next-auth/react'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 
 import { Form, FormControl, FormField, FormItem, FormMessage } from '../ui/form'
+import GoogleButtonSignin from './google-button-signin'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
 import { Icons } from '../icons'
@@ -14,7 +16,6 @@ import { Icons } from '../icons'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import { useToast } from '@/components/ui/use-toast'
-import Link from 'next/link'
 
 const formSchema = z.object({
 	email: z.string({ required_error: 'Please enter your email' }).email('Please enter a valid email address'),
@@ -167,6 +168,7 @@ export function SignInForm({ callbackUrl }: Props) {
 						{isLoading && <Icons.spinner className='mr-2 h-4 w-4 animate-spin' />}
 						Sign In
 					</Button>
+					<GoogleButtonSignin />
 				</div>
 			</form>
 		</Form>
