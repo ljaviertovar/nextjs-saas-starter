@@ -7,11 +7,12 @@ import { signIn } from 'next-auth/react'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 
-import { Form, FormControl, FormField, FormItem, FormMessage } from '../ui/form'
 import GoogleButtonSignin from './google-button-signin'
+import { Form, FormControl, FormField, FormItem, FormMessage } from '../ui/form'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
 import { Icons } from '../icons'
+import { SpinnerIcon } from '../icons/'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -161,14 +162,23 @@ export function SignInForm({ callbackUrl }: Props) {
 						</Link>
 					</p>
 
-					<Button
-						className='text-foreground mt-4'
-						disabled={isLoading}
-					>
-						{isLoading && <Icons.spinner className='mr-2 h-4 w-4 animate-spin' />}
-						Sign In
-					</Button>
-					<GoogleButtonSignin />
+					<div className='mt-4 flex flex-col gap-4'>
+						<Button
+							className='text-foreground'
+							disabled={isLoading}
+						>
+							{isLoading && (
+								<span className='animate-spin'>
+									<SpinnerIcon size={16} />
+								</span>
+							)}
+							Sign In
+						</Button>
+						<GoogleButtonSignin
+							typeSubmit='sigin'
+							callbackUrl='/'
+						/>
+					</div>
 				</div>
 			</form>
 		</Form>

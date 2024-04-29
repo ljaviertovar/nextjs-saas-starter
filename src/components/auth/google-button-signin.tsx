@@ -4,8 +4,13 @@ import { signIn } from 'next-auth/react'
 import { Button } from '../ui/button'
 import { GoogleIcon, SpinnerIcon } from '../icons/'
 
-export default function GoogleButtonSignin() {
-	const [isLoading, setIsLoading] = useState(true)
+interface Props {
+	typeSubmit: 'sigin' | 'signup'
+	callbackUrl?: string
+}
+
+export default function GoogleButtonSignin({ typeSubmit, callbackUrl }: Props) {
+	const [isLoading, setIsLoading] = useState(false)
 
 	return (
 		<Button
@@ -13,6 +18,10 @@ export default function GoogleButtonSignin() {
 			type='button'
 			disabled={isLoading}
 			className='flex items-center justify-center gap-2 '
+			onClick={() => {
+				setIsLoading(true)
+				signIn('google', { callbackUrl })
+			}}
 		>
 			{isLoading ? (
 				<span className='animate-spin'>
@@ -21,7 +30,7 @@ export default function GoogleButtonSignin() {
 			) : (
 				<GoogleIcon size={16} />
 			)}{' '}
-			Sign in with Google
+			{typeSubmit === 'signup' ? 'Sign Up with Google' : 'Sign in with Google'}
 		</Button>
 	)
 }
