@@ -8,15 +8,14 @@ declare module 'next-auth' {
 
 	interface User {
 		role: string
+		username: string | null
 	}
 }
 
-// declare module 'next-auth/jwt' {
-// 	type JWT = User
-// }
 declare module 'next-auth/jwt' {
 	interface JWT {
 		// user: User
 		role: string
+		username: string | null
 	}
 }

@@ -59,10 +59,11 @@ export const authOptions: AuthOptions = {
 			clientId: process.env.GOOGLE_CLIENT_ID!,
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
 			profile(profile) {
-				console.log('GOOGLE PROFILE==>>', { profile })
+				// console.log('GOOGLE PROFILE==>>', { profile })
 				return {
 					id: profile.sub,
 					name: `${profile.given_name} ${profile.family_name}`,
+					username: null,
 					email: profile.email,
 					image: profile.picture,
 					role: profile.role ? profile.role : 'user',
@@ -72,45 +73,21 @@ export const authOptions: AuthOptions = {
 		}),
 	],
 	callbacks: {
-		// async signIn({ account, profile }) {
-		// 	if (!profile?.email) {
-		// 		throw new Error('No email found in the Google account')
-		// 	}
-
-		// 	console.log({ account, profile })
-
-		// 	await prisma.user.upsert({
-		// 		where: {
-		// 			email: profile.email,
-		// 		},
-		// 		update: {
-		// 			name: profile.name,
-		// 			image: profile.image,
-		// 		},
-		// 		create: {
-		// 			email: profile.email,
-		// 			name: profile.name ?? '',
-		// 			image: profile.image,
-		// 			emailVerified: true,
-		// 		},
-		// 	})
-
-		// 	return true
-		// },
-
 		async jwt({ token, user }) {
-			console.log('JWT Callback', { token, user })
+			// console.log('JWT Callback', { token, user })
 			if (user) {
-				console.log('EXISTE USER', { user })
+				// console.log('EXISTE USER', { user })
 				token.role = user.role
+				token.username = user.username
 			}
 			return token
 		},
 
 		async session({ token, session }) {
-			console.log('SESS==>>', { token, session })
+			// console.log('SESS==>>', { token, session })
 			if (session.user) {
 				session.user.role = token.role
+				session.user.username = token.username
 			}
 			return session
 		},
