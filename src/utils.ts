@@ -1,8 +1,8 @@
+import { redirect } from 'next/navigation'
+import { getServerSession } from 'next-auth'
 import crypto from 'crypto'
 
-import { getServerSession } from 'next-auth'
-import { redirect } from 'next/navigation'
-import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import { authOptions } from './lib/auth-options'
 
 export function getBaseUrl() {
 	return process.env.VERCEL_ENV === 'production'

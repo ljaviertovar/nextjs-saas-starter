@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { signIn } from 'next-auth/react'
 
 import { Button } from '../ui/button'
 import { GoogleIcon, SpinnerIcon } from '../icons/'
 
 interface Props {
-	typeSubmit: 'sigin' | 'signup'
+	typeSubmit: 'signin' | 'signup'
 	callbackUrl?: string
 }
 

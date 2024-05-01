@@ -42,7 +42,6 @@ export function SignInForm({ callbackUrl }: Props) {
 	const router = useRouter()
 
 	const form = useForm<InputType>({
-		// validate inputs
 		resolver: zodResolver(formSchema),
 	})
 
@@ -175,8 +174,8 @@ export function SignInForm({ callbackUrl }: Props) {
 							Sign In
 						</Button>
 						<GoogleButtonSignin
-							typeSubmit='sigin'
-							callbackUrl='/'
+							typeSubmit='signin'
+							callbackUrl={callbackUrl}
 						/>
 					</div>
 				</div>

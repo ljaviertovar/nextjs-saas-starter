@@ -55,6 +55,8 @@ export function SignUpForm() {
 	const [isVisiblePass, setIsVisiblePass] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
 
+	// const baseUrl = getBaseUrl()
+
 	const { toast } = useToast()
 
 	const form = useForm<InputType>({
@@ -232,7 +234,7 @@ export function SignUpForm() {
 						</Button>
 						<GoogleButtonSignin
 							typeSubmit='signup'
-							callbackUrl='/'
+							// callbackUrl={callbackUrl}
 						/>
 					</div>
 				</div>
