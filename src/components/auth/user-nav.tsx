@@ -17,7 +17,7 @@ interface Props {
 }
 
 export function UserNav({ user }: Props) {
-	console.log({ user })
+	// console.log({ user })
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
@@ -27,8 +27,8 @@ export function UserNav({ user }: Props) {
 				>
 					<Avatar className='h-9 w-9'>
 						<AvatarImage
-							src='/img/avatars/01.png'
-							alt='@ljaviertovar'
+							src={user.image ? user.image : '/img/avatars/01.png'}
+							alt={user.username ?? user.name}
 						/>
 						<AvatarFallback>UU</AvatarFallback>
 					</Avatar>
