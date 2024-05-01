@@ -1,13 +1,16 @@
 import { AuthOptions } from 'next-auth'
+import { PrismaAdapter } from '@auth/prisma-adapter'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import GoogleProvider from 'next-auth/providers/google'
 
 import * as bcrypt from 'bcrypt'
 
 import prisma from '@/lib/prisma'
-import { User } from '@prisma/client'
+
+import type { Adapter } from 'next-auth/adapters'
 
 export const authOptions: AuthOptions = {
+	adapter: PrismaAdapter(prisma) as Adapter,
 	pages: {
 		signIn: '/auth/signin',
 	},
@@ -56,13 +59,14 @@ export const authOptions: AuthOptions = {
 			clientId: process.env.GOOGLE_CLIENT_ID!,
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
 			profile(profile) {
-				console.log({ profile })
+				console.log('GOOGLE PROFILE==>>', { profile })
 				return {
 					id: profile.sub,
 					name: `${profile.given_name} ${profile.family_name}`,
 					email: profile.email,
 					image: profile.picture,
-					// role: profile.role ? profile.role : 'user',
+					role: profile.role ? profile.role : 'user',
+					emailVerified: profile.email_verified,
 				}
 			},
 		}),
@@ -95,12 +99,19 @@ export const authOptions: AuthOptions = {
 		// },
 
 		async jwt({ token, user }) {
-			if (user) token.user = user as User
+			console.log('JWT Callback', { token, user })
+			if (user) {
+				console.log('EXISTE USER', { user })
+				token.role = user.role
+			}
 			return token
 		},
 
 		async session({ token, session }) {
-			session.user = token.user
+			console.log('SESS==>>', { token, session })
+			if (session.user) {
+				session.user.role = token.role
+			}
 			return session
 		},
 	},

@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { signIn, useSession } from 'next-auth/react'
+import { User } from '@prisma/client'
 
 import { Button } from '../ui/button'
 import { UserNav } from './user-nav'
@@ -12,7 +13,7 @@ export default function AuthButtons() {
 	return (
 		<div className='flex justify-end gap-4'>
 			{session && session.user ? (
-				<UserNav user={session.user} />
+				<UserNav user={session.user as User} />
 			) : (
 				<>
 					<Button

@@ -46,11 +46,11 @@ model User {
   resetPasswordToken String? @unique
   resetPasswordTokenExpiry DateTime?
   email         String   @unique
-  emailVerified Boolean  @default(false)
+  emailVerified Boolean?  @default(false)
   emailVerificationToken  String? @unique
   phone         String?
   image         String?
-  role         String   @default("user")
+  role          String   @default("user")
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   accounts      Account[]
