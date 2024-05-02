@@ -17,7 +17,7 @@ interface Props {
 }
 
 export function UserNav({ user }: Props) {
-	// console.log({ user })
+	console.log({ user })
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
@@ -28,7 +28,7 @@ export function UserNav({ user }: Props) {
 					<Avatar className='h-9 w-9'>
 						<AvatarImage
 							src={user.image ? user.image : '/img/avatars/01.png'}
-							alt={user.username ?? user.name}
+							alt={user.username ?? user.name ?? ''}
 						/>
 						<AvatarFallback>UU</AvatarFallback>
 					</Avatar>
@@ -40,7 +40,7 @@ export function UserNav({ user }: Props) {
 				forceMount
 			>
 				<DropdownMenuLabel className='font-normal'>
-					<div className='flex flex-col space-y-1'>
+					<div className='flex flex-col space-y-2'>
 						<p className='text-sm font-medium leading-none'>{user.username ?? user.name}</p>
 						<p className='text-xs leading-none text-muted-foreground'>{user.email}</p>
 					</div>
@@ -49,7 +49,8 @@ export function UserNav({ user }: Props) {
 				<DropdownMenuItem>
 					<Button
 						variant={'ghost'}
-						className='w-full'
+						size={'sm'}
+						className='w-full h-6'
 						onClick={() => signOut({ callbackUrl: '/auth/signin' })}
 					>
 						Sign Out

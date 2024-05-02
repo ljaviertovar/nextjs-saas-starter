@@ -28,16 +28,16 @@ CREATE TABLE "Session" (
 CREATE TABLE "User" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "username" TEXT,
-    "name" TEXT NOT NULL,
+    "name" TEXT,
     "password" TEXT,
     "resetPasswordToken" TEXT,
     "resetPasswordTokenExpiry" DATETIME,
     "email" TEXT NOT NULL,
-    "emailVerified" BOOLEAN NOT NULL DEFAULT false,
+    "emailVerified" BOOLEAN DEFAULT false,
     "emailVerificationToken" TEXT,
     "phone" TEXT,
     "image" TEXT,
-    "role" TEXT NOT NULL DEFAULT 'user',
+    "isSubscribed" BOOLEAN DEFAULT false,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL
 );

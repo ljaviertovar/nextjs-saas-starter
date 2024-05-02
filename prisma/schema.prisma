@@ -50,7 +50,7 @@ model User {
   emailVerificationToken  String? @unique
   phone         String?
   image         String?
-  role          String   @default("user")
+  isSubscribed  Boolean? @default(false)
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   accounts      Account[]

@@ -8,6 +8,7 @@ import * as bcrypt from 'bcrypt'
 import prisma from '@/lib/prisma'
 
 import type { Adapter } from 'next-auth/adapters'
+import { User } from '@prisma/client'
 
 export const authOptions: AuthOptions = {
 	adapter: PrismaAdapter(prisma) as Adapter,
@@ -40,33 +41,32 @@ export const authOptions: AuthOptions = {
 					},
 				})
 
-				console.log({ user })
-
 				if (!user) throw new Error('User name or password is not correct')
 
 				if (!credentials?.password) throw new Error('Please, provide your password.')
-				const isPassowrdCorrect = bcrypt.compare(credentials.password, user.password as string)
+				const isPassowrdCorrect = await bcrypt.compare(credentials.password, user.password as string)
 
 				if (!isPassowrdCorrect) throw new Error('User name or password is not correct.')
 
 				if (!user.emailVerified) throw new Error('EmailNotVerified')
 
 				const { password, ...userWithoutPass } = user
-				return userWithoutPass
+
+				return userWithoutPass as any
 			},
 		}),
 		GoogleProvider({
 			clientId: process.env.GOOGLE_CLIENT_ID!,
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
 			profile(profile) {
-				// console.log('GOOGLE PROFILE==>>', { profile })
+				console.log('GOOGLE PROFILE==>>', { profile })
 				return {
 					id: profile.sub,
 					name: `${profile.given_name} ${profile.family_name}`,
 					username: null,
 					email: profile.email,
 					image: profile.picture,
-					role: profile.role ? profile.role : 'user',
+					isSubscribed: false,
 					emailVerified: profile.email_verified,
 				}
 			},
@@ -74,19 +74,18 @@ export const authOptions: AuthOptions = {
 	],
 	callbacks: {
 		async jwt({ token, user }) {
-			// console.log('JWT Callback', { token, user })
 			if (user) {
-				// console.log('EXISTE USER', { user })
-				token.role = user.role
+				console.log('EXISTE USER', { token, user })
+				token.isSubscribed = user.isSubscribed
 				token.username = user.username
 			}
 			return token
 		},
 
 		async session({ token, session }) {
-			// console.log('SESS==>>', { token, session })
 			if (session.user) {
-				session.user.role = token.role
+				console.log('SESS==>>', { token, session })
+				session.user.isSubscribed = token.isSubscribed
 				session.user.username = token.username
 			}
 			return session
