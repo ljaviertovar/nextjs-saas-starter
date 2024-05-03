@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { signOut } from 'next-auth/react'
 import { User } from '@prisma/client'
 
@@ -45,6 +46,17 @@ export function UserNav({ user }: Props) {
 						<p className='text-xs leading-none text-muted-foreground'>{user.email}</p>
 					</div>
 				</DropdownMenuLabel>
+
+				<DropdownMenuSeparator />
+
+				<DropdownMenuItem>
+					<Link
+						className='block w-full h-6 text-sm text-left'
+						href='/auth/profile'
+					>
+						Profile
+					</Link>
+				</DropdownMenuItem>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem>
 					<Button

@@ -22,3 +22,7 @@ export async function isLogged(callbackUrl: string) {
 		redirect(callbackUrl || '/')
 	}
 }
+
+export async function getSession() {
+	return await getServerSession(authOptions)
+}
