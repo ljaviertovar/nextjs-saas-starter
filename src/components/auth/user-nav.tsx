@@ -18,7 +18,6 @@ interface Props {
 }
 
 export function UserNav({ user }: Props) {
-	console.log({ user })
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
