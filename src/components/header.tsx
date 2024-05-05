@@ -20,7 +20,7 @@ export default function Header() {
 	}
   `}
 		>
-			<div className='container mx-auto max-w-7xl flex h-14 justify-between items-center'>
+			<div className='hidden container mx-auto max-w-7xl lg:flex h-14 justify-between items-center'>
 				<div className='flex items-center gap-4'>
 					<div className='flex items-center font-semibold'>
 						<Link
