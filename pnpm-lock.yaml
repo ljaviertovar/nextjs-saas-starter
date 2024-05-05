@@ -53,6 +53,9 @@ dependencies:
   clsx:
     specifier: ^2.1.0
     version: 2.1.0
+  framer-motion:
+    specifier: ^11.1.7
+    version: 11.1.7(react-dom@18.2.0)(react@18.2.0)
   jsonwebtoken:
     specifier: ^9.0.2
     version: 9.0.2
@@ -3747,6 +3750,25 @@ packages:
       tslib: 2.6.2
     optionalDependencies:
       '@emotion/is-prop-valid': 0.8.8
+    dev: false
+
+  /framer-motion@11.1.7(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-cW11Pu53eDAXUEhv5hEiWuIXWhfkbV32PlgVISn7jRdcAiVrJ1S03YQQ0/DzoswGYYwKi4qYmHHjCzAH52eSdQ==}
+    peerDependencies:
+      '@emotion/is-prop-valid': '*'
+      react: ^18.0.0
+      react-dom: ^18.0.0
+    peerDependenciesMeta:
+      '@emotion/is-prop-valid':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      tslib: 2.6.2
     dev: false
 
   /fs-minipass@2.1.0:

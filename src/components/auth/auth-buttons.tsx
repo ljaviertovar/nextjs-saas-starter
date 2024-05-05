@@ -4,11 +4,21 @@ import Link from 'next/link'
 import { signIn, useSession } from 'next-auth/react'
 import { User } from '@prisma/client'
 
+import { Skeleton } from '@/components/ui/skeleton'
 import { Button } from '../ui/button'
 import { UserNav } from './user-nav'
 
 export default function AuthButtons() {
-	const { data: session } = useSession()
+	const { data: session, status } = useSession()
+
+	console.log({ status })
+	if (status === 'loading') {
+		return (
+			<div className='flex justify-end gap-4'>
+				<Skeleton className='h-9 w-9 rounded-full' />
+			</div>
+		)
+	}
 
 	return (
 		<div className='flex justify-end gap-4'>
