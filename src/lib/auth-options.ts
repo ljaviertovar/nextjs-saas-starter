@@ -8,7 +8,6 @@ import * as bcrypt from 'bcrypt'
 import prisma from '@/lib/prisma'
 
 import type { Adapter } from 'next-auth/adapters'
-import { User } from '@prisma/client'
 
 export const authOptions: AuthOptions = {
 	adapter: PrismaAdapter(prisma) as Adapter,
@@ -59,7 +58,6 @@ export const authOptions: AuthOptions = {
 			clientId: process.env.GOOGLE_CLIENT_ID!,
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
 			profile(profile) {
-				console.log('GOOGLE PROFILE==>>', { profile })
 				return {
 					id: profile.sub,
 					name: `${profile.given_name} ${profile.family_name}`,
@@ -75,7 +73,6 @@ export const authOptions: AuthOptions = {
 	callbacks: {
 		async jwt({ token, user }) {
 			if (user) {
-				console.log('EXISTE USER', { token, user })
 				token.isSubscribed = user.isSubscribed
 				token.username = user.username
 			}
@@ -84,7 +81,6 @@ export const authOptions: AuthOptions = {
 
 		async session({ token, session }) {
 			if (session.user) {
-				console.log('SESS==>>', { token, session })
 				session.user.isSubscribed = token.isSubscribed
 				session.user.username = token.username
 			}
