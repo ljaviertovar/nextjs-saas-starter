@@ -38,7 +38,10 @@ export async function registerUser(user: Partial<User>) {
 		await sendEmail({
 			to: [process.env.RESEND_ACCOUNT_EMAIL!, createdUser.email],
 			subject: 'Verify your email address',
-			react: React.createElement(VerificationTemplate, { username: createdUser.username, emailVerificationToken }),
+			react: React.createElement(VerificationTemplate, {
+				username: createdUser.username as string,
+				emailVerificationToken,
+			}),
 		})
 
 		return createdUser
@@ -117,7 +120,10 @@ export async function forgotPassword(email: string) {
 	const sendEmailResult = await sendEmail({
 		to: [process.env.RESEND_ACCOUNT_EMAIL!, user.email],
 		subject: 'Reset your password',
-		react: React.createElement(ResetPasswordTemplate, { username: user.username, resetPasswordToken: jwtUserId }),
+		react: React.createElement(ResetPasswordTemplate, {
+			username: user.username as string,
+			resetPasswordToken: jwtUserId,
+		}),
 	})
 
 	return sendEmailResult

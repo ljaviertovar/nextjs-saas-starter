@@ -5,11 +5,13 @@ import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import { passwordStrength } from 'check-password-strength'
 
+import GoogleButtonSignin from './google-button-signin'
 import { Form, FormControl, FormField, FormItem, FormMessage } from '../ui/form'
 import PasswordStrength from './password-strength'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
 import { Icons } from '../icons'
+import { SpinnerIcon } from '../icons/'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -52,6 +54,8 @@ export function SignUpForm() {
 	const [passStrength, setPassStrength] = useState(0)
 	const [isVisiblePass, setIsVisiblePass] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
+
+	// const baseUrl = getBaseUrl()
 
 	const { toast } = useToast()
 
@@ -216,13 +220,23 @@ export function SignUpForm() {
 							)}
 						/>
 					</div>
-					<Button
-						className='text-foreground mt-4'
-						disabled={isLoading}
-					>
-						{isLoading && <Icons.spinner className='mr-2 h-4 w-4 animate-spin' />}
-						Sign Up
-					</Button>
+					<div className='mt-4 flex flex-col gap-4'>
+						<Button
+							className='text-foreground mt-4'
+							disabled={isLoading}
+						>
+							{isLoading && (
+								<span className='animate-spin'>
+									<SpinnerIcon size={16} />
+								</span>
+							)}
+							Sign Up
+						</Button>
+						<GoogleButtonSignin
+							typeSubmit='signup'
+							// callbackUrl={callbackUrl}
+						/>
+					</div>
 				</div>
 			</form>
 		</Form>

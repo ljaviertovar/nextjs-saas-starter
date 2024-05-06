@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			suppressHydrationWarning
 		>
 			<body className={`${inter.className} relative`}>
-				<div className='absolute top-0 z-[-2] h-screen w-screen bg-background bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(55,119,226,0.3),rgba(255,255,255,0))]'></div>
+				<div className='absolute top-0 z-[-2] h-screen w-full bg-background bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(55,119,226,0.3),rgba(255,255,255,0))]'></div>
 				<AuthProvider>
 					<ThemeProvider
 						attribute='class'

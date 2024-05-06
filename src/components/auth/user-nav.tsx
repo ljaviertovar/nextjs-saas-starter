@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { signOut } from 'next-auth/react'
 import { User } from '@prisma/client'
 
@@ -26,8 +27,8 @@ export function UserNav({ user }: Props) {
 				>
 					<Avatar className='h-9 w-9'>
 						<AvatarImage
-							src='/img/avatars/01.png'
-							alt='@ljaviertovar'
+							src={user.image ? user.image : '/img/avatars/01.png'}
+							alt={user.username ?? user.name ?? ''}
 						/>
 						<AvatarFallback>UU</AvatarFallback>
 					</Avatar>
@@ -39,16 +40,28 @@ export function UserNav({ user }: Props) {
 				forceMount
 			>
 				<DropdownMenuLabel className='font-normal'>
-					<div className='flex flex-col space-y-1'>
-						<p className='text-sm font-medium leading-none'>{user.username}</p>
+					<div className='flex flex-col space-y-2'>
+						<p className='text-sm font-medium leading-none'>{user.username ?? user.name}</p>
 						<p className='text-xs leading-none text-muted-foreground'>{user.email}</p>
 					</div>
 				</DropdownMenuLabel>
+
+				<DropdownMenuSeparator />
+
+				<DropdownMenuItem>
+					<Link
+						className='block w-full h-6 text-sm text-left'
+						href='/auth/profile'
+					>
+						Profile
+					</Link>
+				</DropdownMenuItem>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem>
 					<Button
 						variant={'ghost'}
-						className='w-full'
+						size={'sm'}
+						className='w-full h-6'
 						onClick={() => signOut({ callbackUrl: '/auth/signin' })}
 					>
 						Sign Out
