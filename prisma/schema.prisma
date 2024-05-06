@@ -40,15 +40,19 @@ model Session {
 
 model User {
   id            String    @id @default(cuid())
-  username      String
-  password      String
+  username      String?   @unique
+  name          String?
+  password      String?
   resetPasswordToken String? @unique
   resetPasswordTokenExpiry DateTime?
   email         String   @unique
-  emailVerified Boolean  @default(false)
+  emailVerified Boolean?  @default(false)
   emailVerificationToken  String? @unique
   phone         String?
   image         String?
+  isSubscribed  Boolean? @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
   accounts      Account[]
   sessions      Session[]
 }

@@ -69,6 +69,19 @@ export default function Home() {
 							</span>
 						</p>
 					</a>
+					<a
+						href='https://hackernoon.com/enhancing-password-security-and-recovery-with-nextjs-14-and-nextauthjs'
+						className='group rounded-lg border border-transparent px-5 py-4 transition-colors hover:bg-gray-100 dark:border-neutral-700 hover:dark:bg-neutral-800/30'
+						target='_blank'
+						rel='noopener noreferrer'
+					>
+						<p className={`mb-3 text-2xl font-semibold`}>
+							Authentication <span className='text-sm inline-block'>Part 3</span>{' '}
+							<span className='inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none'>
+								-&gt;
+							</span>
+						</p>
+					</a>
 				</div>
 			</section>
 		</>

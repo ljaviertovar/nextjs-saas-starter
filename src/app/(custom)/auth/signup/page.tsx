@@ -88,7 +88,7 @@ export default async function signUpPage({ searchParams }: Props) {
 							<Link href='/auth/signin'>Sign In</Link>
 						</Button>
 					</div>
-					<div className='w-full max-w-[375px]'>
+					<div className='w-full max-w-[320px]'>
 						<div className='flex flex-col text-center my-6 space-y-2'>
 							<h1 className='text-2xl font-semibold tracking-tight'>Create an account</h1>
 							<p className='text-sm text-muted-foreground'>Enter the info below to create your account</p>
