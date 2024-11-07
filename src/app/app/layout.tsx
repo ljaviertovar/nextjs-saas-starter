@@ -1,6 +1,5 @@
 import { cookies } from 'next/headers'
 
-import Header from '@/components/app/header'
 import { Panel } from '@/components/app/panel'
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
@@ -12,12 +11,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
 	return (
 		<div className='flex flex-col'>
-			<Panel defaultLayout={defaultLayout} defaultCollapsed={defaultCollapsed} navCollapsedSize={4} />
-
-			{/* <div className=''>
-				<Header />
+			<Panel defaultLayout={defaultLayout} defaultCollapsed={defaultCollapsed} navCollapsedSize={4}>
 				{children}
-			</div> */}
+			</Panel>
 		</div>
 	)
 }

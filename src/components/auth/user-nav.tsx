@@ -21,24 +21,14 @@ export function UserNav({ user }: Props) {
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
-				<Button
-					variant='ghost'
-					className='relative h-8 w-8 rounded-full'
-				>
+				<Button variant='ghost' className='relative h-8 w-8 rounded-full'>
 					<Avatar className='h-9 w-9'>
-						<AvatarImage
-							src={user.image ? user.image : '/img/avatars/01.png'}
-							alt={user.username ?? user.name ?? ''}
-						/>
+						<AvatarImage src={user.image ? user.image : '/img/avatars/01.png'} alt={user.username ?? user.name ?? ''} />
 						<AvatarFallback>UU</AvatarFallback>
 					</Avatar>
 				</Button>
 			</DropdownMenuTrigger>
-			<DropdownMenuContent
-				className='w-56'
-				align='end'
-				forceMount
-			>
+			<DropdownMenuContent className='w-56' align='end' forceMount>
 				<DropdownMenuLabel className='font-normal'>
 					<div className='flex flex-col space-y-2'>
 						<p className='text-sm font-medium leading-none'>{user.username ?? user.name}</p>
@@ -49,10 +39,7 @@ export function UserNav({ user }: Props) {
 				<DropdownMenuSeparator />
 
 				<DropdownMenuItem>
-					<Link
-						className='block w-full h-6 text-sm text-left'
-						href='/auth/profile'
-					>
+					<Link className='block w-full h-6 text-sm text-left' href='/app/profile'>
 						Profile
 					</Link>
 				</DropdownMenuItem>

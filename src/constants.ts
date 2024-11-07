@@ -21,14 +21,14 @@ export const NAV_ITEMS: NavItem[] = [
 export const APP_NAV_ITEMS: NavItem[] = [
 	{
 		title: 'Dashboard',
-		href: '/dashboard',
+		href: '/app/dashboard',
 		icon: LayoutDashboard,
 		submenu: false,
 		subMenuItems: [],
 	},
 	{
 		title: 'All Tools',
-		href: '/all-tools',
+		href: '/app/all-tools',
 		icon: Wrench,
 		submenu: false,
 		subMenuItems: [],
