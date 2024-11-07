@@ -49,29 +49,20 @@ export default function HeaderMobile() {
 			className={`fixed inset-0 z-50 w-full lg:hidden ${isOpen ? '' : 'pointer-events-none'}`}
 			ref={containerRef}
 		>
-			<motion.div
-				className='absolute inset-0 right-0 w-full bg-background'
-				variants={sidebar}
-			/>
-			<motion.ul
-				variants={variants}
-				className='absolute grid w-full gap-3 px-10 py-16 max-h-screen overflow-y-auto'
-			>
+			<motion.div className='absolute inset-0 right-0 w-full bg-background' variants={sidebar} />
+			<motion.ul variants={variants} className='absolute grid w-full gap-3 px-10 py-16 max-h-screen overflow-y-auto'>
 				{NAV_ITEMS.map((item, idx) => {
 					return (
 						<div key={idx}>
 							{item.submenu ? (
-								<MenuItemWithSubMenu
-									item={item}
-									toggleOpen={toggleOpen}
-								/>
+								<MenuItemWithSubMenu item={item} toggleOpen={toggleOpen} />
 							) : (
 								<MenuItem>
 									<Link
-										href={item.path}
+										href={item.href}
 										onClick={() => toggleOpen()}
 										className={`flex w-full text-2xl mb-2 text-muted-foreground ${
-											item.path === pathname ? 'font-bold' : ''
+											item.href === pathname ? 'font-bold' : ''
 										}`}
 									>
 										{item.title}
@@ -93,15 +84,8 @@ export default function HeaderMobile() {
 }
 
 const MenuToggle = ({ toggle }: { toggle: any }) => (
-	<button
-		onClick={toggle}
-		className='pointer-events-auto absolute right-4 top-[14px] z-30'
-	>
-		<svg
-			width='23'
-			height='23'
-			viewBox='0 0 23 23'
-		>
+	<button onClick={toggle} className='pointer-events-auto absolute right-4 top-[14px] z-30'>
+		<svg width='23' height='23' viewBox='0 0 23 23'>
 			<Path
 				variants={{
 					closed: { d: 'M 2 2.5 L 20 2.5' },
@@ -127,21 +111,12 @@ const MenuToggle = ({ toggle }: { toggle: any }) => (
 )
 
 const Path = (props: any) => (
-	<motion.path
-		fill='transparent'
-		strokeWidth='2'
-		stroke='currentColor'
-		strokeLinecap='round'
-		{...props}
-	/>
+	<motion.path fill='transparent' strokeWidth='2' stroke='currentColor' strokeLinecap='round' {...props} />
 )
 
 const MenuItem = ({ className, children }: { className?: string; children?: ReactNode }) => {
 	return (
-		<motion.li
-			variants={MenuItemVariants}
-			className={className}
-		>
+		<motion.li variants={MenuItemVariants} className={className}>
 			{children}
 		</motion.li>
 	)
@@ -154,10 +129,7 @@ const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({ item, toggleO
 	return (
 		<>
 			<MenuItem>
-				<button
-					className='flex w-full text-2xl'
-					onClick={() => setSubMenuOpen(!subMenuOpen)}
-				>
+				<button className='flex w-full text-2xl' onClick={() => setSubMenuOpen(!subMenuOpen)}>
 					<div className='flex flex-row justify-between w-full items-center'>
 						<span className={`${pathname.includes(item.path) ? 'font-bold' : ''}`}>{item.title}</span>
 						{/* <div className={`${subMenuOpen && 'rotate-180'}`}>
@@ -173,9 +145,9 @@ const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({ item, toggleO
 							return (
 								<MenuItem key={subIdx}>
 									<Link
-										href={subItem.path}
+										href={subItem.href}
 										onClick={() => toggleOpen()}
-										className={` ${subItem.path === pathname ? 'font-bold' : ''}`}
+										className={` ${subItem.href === pathname ? 'font-bold' : ''}`}
 									>
 										{subItem.title}
 									</Link>

@@ -1,8 +1,9 @@
+import { LucideIcon } from 'lucide-react'
+
 export type NavItem = {
-	onlySideNavItem?: boolean
 	title: string
-	path: string
-	icon: JSX.Element | null
+	href: string
+	icon: LucideIcon | null
 	submenu?: boolean
 	subMenuItems?: NavItem[]
 }

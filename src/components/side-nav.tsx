@@ -1,97 +1,72 @@
-'use client'
+import React, { ReactNode, useState } from 'react'
+import { Clipboard, LucideIcon } from 'lucide-react'
 
-import { useState } from 'react'
+import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip'
+
+import { cn } from '@/lib/utils'
 import Link from 'next/link'
+import { APP_NAV_ITEMS } from '../constants'
 import { usePathname } from 'next/navigation'
-
 import { NavItem } from '@/types'
-import { NAV_ITEMS } from '@/constants'
 
-export default function SideNav() {
+interface Props {
+	isCollapsed: boolean
+}
+
+export default function SideNav({ isCollapsed }: Props) {
+	const pathname = usePathname()
+
 	return (
-		<div className='md:w-60 bg-white h-screen flex-1 fixed border-r border-zinc-200 hidden md:flex'>
-			<div className='flex flex-col space-y-6 w-full'>
-				<Link
-					href='/'
-					className='flex flex-row space-x-3 items-center justify-center md:justify-start md:px-6 border-b border-zinc-200 h-12 w-full'
-				>
-					<span className='h-7 w-7 bg-zinc-300 rounded-lg' />
-					<span className='font-bold text-xl hidden md:flex'>Logo</span>
-				</Link>
+		<div data-collapsed={isCollapsed} className='h-[calc(100%-80px)] flex flex-col justify-between gap-4'>
+			<nav className='grid gap-1 px-2 group-[[data-collapsed=true]]:justify-center group-[[data-collapsed=true]]:px-2'>
+				{APP_NAV_ITEMS.map((link, index) =>
+					isCollapsed ? (
+						<Tooltip key={index} delayDuration={0}>
+							<TooltipTrigger asChild>
+								<Link
+									href='#'
+									className={cn(
+										'h-9 w-9',
 
-				<div className='flex flex-col space-y-2  md:px-6 '>
-					{NAV_ITEMS.map((item, idx) => {
-						return (
-							<MenuItem
-								key={idx}
-								item={item}
-							/>
-						)
-					})}
-				</div>
-			</div>
+										'dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted dark:hover:text-white'
+									)}
+								>
+									{/* <link.icon className="h-4 w-4" /> */}
+									<span className='sr-only'>{link.title}</span>
+								</Link>
+							</TooltipTrigger>
+							<TooltipContent side='right' className='flex items-center gap-4'>
+								{link.title}
+							</TooltipContent>
+						</Tooltip>
+					) : (
+						<MenuLink key={index} pathname={pathname} {...link} />
+					)
+				)}
+			</nav>
+
+			{!isCollapsed && (
+				<p className='p-4 text-sm text-muted-foreground'>
+					Application explained on{' '}
+					<a
+						href='https://hackernoon.com/u/ljaviertovar'
+						target='_blank'
+						rel='noreferrer'
+						className='text-primary font-medium underline'
+					>
+						Medium
+					</a>
+				</p>
+			)}
 		</div>
 	)
 }
 
-const MenuItem = ({ item }: { item: NavItem }) => {
-	const pathname = usePathname()
-	const [subMenuOpen, setSubMenuOpen] = useState(false)
-	const toggleSubMenu = () => {
-		setSubMenuOpen(!subMenuOpen)
-	}
-
+const MenuLink = ({ href, title, icon: Icon, pathname }: NavItem & { pathname: string }) => {
 	return (
-		<div className=''>
-			{item.submenu ? (
-				<>
-					<button
-						onClick={toggleSubMenu}
-						className={`flex flex-row items-center p-2 rounded-lg hover-bg-zinc-100 w-full justify-between hover:bg-zinc-100 ${
-							pathname.includes(item.path) ? 'bg-zinc-100' : ''
-						}`}
-					>
-						<div className='flex flex-row space-x-4 items-center'>
-							{item.icon}
-							<span className='font-semibold text-xl  flex'>{item.title}</span>
-						</div>
-
-						{/* <div className={`${subMenuOpen ? 'rotate-180' : ''} flex`}>
-							<Icon
-								icon='lucide:chevron-down'
-								width='24'
-								height='24'
-							/>
-						</div> */}
-					</button>
-
-					{subMenuOpen && (
-						<div className='my-2 ml-12 flex flex-col space-y-4'>
-							{item.subMenuItems?.map((subItem, idx) => {
-								return (
-									<Link
-										key={idx}
-										href={subItem.path}
-										className={`${subItem.path === pathname ? 'font-bold' : ''}`}
-									>
-										<span>{subItem.title}</span>
-									</Link>
-								)
-							})}
-						</div>
-					)}
-				</>
-			) : (
-				<Link
-					href={item.path}
-					className={`flex flex-row space-x-4 items-center p-2 rounded-lg hover:bg-zinc-100 ${
-						item.path === pathname ? 'bg-zinc-100' : ''
-					}`}
-				>
-					{item.icon}
-					<span className='font-semibold text-xl flex'>{item.title}</span>
-				</Link>
-			)}
-		</div>
+		<Link href={href} className={`rounded-sm p-2 justify-start hover:bg-muted ${pathname === href && 'bg-primary/30'}`}>
+			{Icon && <Icon className='mr-2 h-4 w-4' />}
+			{title}
+		</Link>
 	)
 }
