@@ -1,12 +1,13 @@
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 
-import { cn } from '@/lib/utils'
-import Link from 'next/link'
-import { APP_NAV_ITEMS } from '../../constants'
-import { usePathname } from 'next/navigation'
-import { NavItem } from '@/types'
-import { Button } from '@react-email/components'
 import Logo from '../Logo'
+
+import { cn } from '@/lib/utils'
+import { NavItem } from '@/types'
+import { APP_NAV_ITEMS } from '../../constants'
 
 interface Props {
 	isCollapsed: boolean

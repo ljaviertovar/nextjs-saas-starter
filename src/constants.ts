@@ -3,15 +3,8 @@ import { NavItem } from './types'
 
 export const NAV_ITEMS: NavItem[] = [
 	{
-		title: 'Dashboard',
-		href: '/dashboard',
-		icon: null,
-		submenu: false,
-		subMenuItems: [],
-	},
-	{
-		title: 'All Tools',
-		href: '/all-tools',
+		title: 'Featured Apps',
+		href: '#featured-apps',
 		icon: null,
 		submenu: false,
 		subMenuItems: [],
@@ -27,8 +20,8 @@ export const APP_NAV_ITEMS: NavItem[] = [
 		subMenuItems: [],
 	},
 	{
-		title: 'All Tools',
-		href: '/app/all-tools',
+		title: 'All Apps',
+		href: '/app/all-apps',
 		icon: Wrench,
 		submenu: false,
 		subMenuItems: [],

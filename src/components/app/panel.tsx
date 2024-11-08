@@ -3,12 +3,13 @@
 import { useState } from 'react'
 
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from '@/components/ui/resizable'
+import { ScrollArea } from '@/components/ui/scroll-area'
 import { TooltipProvider } from '@radix-ui/react-tooltip'
 
-import { cn } from '@/lib/utils'
-import SideNav from './side-nav'
 import Header from './header'
-import { ScrollArea } from '../ui/scroll-area'
+import SideNav from './side-nav'
+
+import { cn } from '@/lib/utils'
 
 interface Props {
 	defaultLayout: number[] | undefined
