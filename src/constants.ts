@@ -3,8 +3,8 @@ import { NavItem } from './types'
 
 export const NAV_ITEMS: NavItem[] = [
 	{
-		title: 'Featured Apps',
-		href: '#featured-apps',
+		title: 'Featured Tools',
+		href: '#featured-tools',
 		icon: Sparkle,
 		submenu: false,
 		subMenuItems: [],
@@ -20,8 +20,8 @@ export const APP_NAV_ITEMS: NavItem[] = [
 		subMenuItems: [],
 	},
 	{
-		title: 'All Apps',
-		href: '/app/all-apps',
+		title: 'All Tools',
+		href: '/app/all-tools',
 		icon: Wrench,
 		submenu: false,
 		subMenuItems: [],
