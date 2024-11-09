@@ -6,9 +6,9 @@ interface Props {
 
 export default function PanelMobile({ children }: Props) {
 	return (
-		<div className='md:hidden'>
+		<div className='md:hidden pt-14'>
 			<HeaderMobile />
-			<main className='w-full px-2 mt-14'>{children}</main>
+			<main className='w-full p-2'>{children}</main>
 		</div>
 	)
 }

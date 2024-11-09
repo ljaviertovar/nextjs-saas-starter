@@ -4,13 +4,15 @@ import { ReactNode, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import Logo from '../Logo'
-
 import { motion, useCycle } from 'framer-motion'
+
+import Logo from '../Logo'
+import AuthButtons from '../auth/auth-buttons'
+
+import { useScrollPosition } from '@/hooks/use-scroll-position'
 
 import { NavItem } from '@/types'
 import { APP_NAV_ITEMS } from '@/constants'
-import AuthButtons from '../auth/auth-buttons'
 
 type MenuItemWithSubMenuProps = {
 	item: NavItem
@@ -42,54 +44,69 @@ export default function HeaderMobile() {
 	const { height } = useDimensions(containerRef)
 	const [isOpen, toggleOpen] = useCycle(false, true)
 
-	return (
-		<motion.nav
-			initial={false}
-			animate={isOpen ? 'open' : 'closed'}
-			custom={height}
-			className={`fixed inset-0 z-50 w-full lg:hidden ${isOpen ? '' : 'pointer-events-none'}`}
-			ref={containerRef}
-		>
-			<motion.div className='absolute inset-0 right-0 w-full bg-background' variants={sidebar} />
-			<motion.ul variants={variants} className='absolute grid w-full gap-3 px-10 py-16 max-h-screen overflow-y-auto'>
-				{APP_NAV_ITEMS.map((item, idx) => {
-					return (
-						<div key={idx}>
-							{item.submenu ? (
-								<MenuItemWithSubMenu item={item} toggleOpen={toggleOpen} />
-							) : (
-								<MenuItem>
-									<Link
-										href={item.href}
-										onClick={() => toggleOpen()}
-										className={`flex w-full text-2xl mb-2 text-muted-foreground ${
-											item.href === pathname && 'text-primary'
-										}`}
-									>
-										<div className='flex items-center gap-2'>
-											{item.icon && <item.icon className='h-6 w-6' />}
+	const scrollPosition = useScrollPosition()
 
-											{item.title}
-										</div>
-									</Link>
-								</MenuItem>
-							)}
-						</div>
-					)
-				})}
-			</motion.ul>
-			<div className='bg-muted/50 h-14 mt-0'>
-				<div className='absolute left-2 top-[16px] z-30'>
-					<MenuToggle toggle={toggleOpen} />
+	return (
+		<header>
+			<motion.nav
+				initial={false}
+				animate={isOpen ? 'open' : 'closed'}
+				custom={height}
+				className={`fixed inset-0 z-50 w-full lg:hidden ${isOpen ? '' : 'pointer-events-none'}`}
+				ref={containerRef}
+			>
+				<motion.div className='absolute inset-0 right-0 w-full bg-background' variants={sidebar} />
+				<motion.ul
+					variants={variants}
+					className='absolute grid place-content-center h-full w-full gap-3 px-10 py-16 max-h-screen overflow-y-auto'
+				>
+					{APP_NAV_ITEMS.map((item, idx) => {
+						return (
+							<div key={idx}>
+								{item.submenu ? (
+									<MenuItemWithSubMenu item={item} toggleOpen={toggleOpen} />
+								) : (
+									<MenuItem>
+										<Link
+											href={item.href}
+											onClick={() => toggleOpen()}
+											className={`flex w-full text-2xl mb-2 text-muted-foreground ${
+												item.href === pathname && 'text-primary'
+											}`}
+										>
+											<div className='flex items-center gap-2'>
+												{item.icon && <item.icon className='h-6 w-6' />}
+
+												{item.title}
+											</div>
+										</Link>
+									</MenuItem>
+								)}
+							</div>
+						)
+					})}
+				</motion.ul>
+				<div
+					className={`sticky top-0 z-50 transition-shadow w-full h-14 border-b
+${
+	scrollPosition > 56
+		? 'bg-background/40 shadow bg-opacity-60 backdrop-blur-lg backdrop-filter border-b'
+		: 'bg-trasparent shadow-none'
+}
+`}
+				>
+					<div className='absolute left-2 top-[16px] z-30'>
+						<MenuToggle toggle={toggleOpen} />
+					</div>
+					<div className='absolute w-full grid place-content-center mt-[14px]'>
+						<Logo />
+					</div>
+					<div className='absolute right-2 top-[12px] pointer-events-auto z-30'>
+						<AuthButtons />
+					</div>
 				</div>
-				<div className='absolute w-full grid place-content-center mt-[14px]'>
-					<Logo />
-				</div>
-				<div className='absolute right-2 top-[12px] pointer-events-auto z-30'>
-					<AuthButtons />
-				</div>
-			</div>
-		</motion.nav>
+			</motion.nav>
+		</header>
 	)
 }
 

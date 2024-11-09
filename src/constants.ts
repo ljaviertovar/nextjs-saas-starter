@@ -1,11 +1,11 @@
-import { LayoutDashboard, Wrench } from 'lucide-react'
+import { LayoutDashboard, Sparkle, Wrench } from 'lucide-react'
 import { NavItem } from './types'
 
 export const NAV_ITEMS: NavItem[] = [
 	{
 		title: 'Featured Apps',
 		href: '#featured-apps',
-		icon: null,
+		icon: Sparkle,
 		submenu: false,
 		subMenuItems: [],
 	},
