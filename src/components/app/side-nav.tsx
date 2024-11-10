@@ -48,7 +48,7 @@ export default function SideNav({ isCollapsed }: Props) {
 							rel='noreferrer'
 							className='text-primary font-medium underline'
 						>
-							Medium
+							Hackernoon
 						</a>
 					</p>
 				)}
