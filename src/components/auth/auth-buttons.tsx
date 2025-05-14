@@ -11,7 +11,6 @@ import { UserNav } from './user-nav'
 export default function AuthButtons() {
 	const { data: session, status } = useSession()
 
-	console.log({ status })
 	if (status === 'loading') {
 		return (
 			<div className='flex justify-end gap-4'>
@@ -26,18 +25,10 @@ export default function AuthButtons() {
 				<UserNav user={session.user as User} />
 			) : (
 				<>
-					<Button
-						size={'sm'}
-						variant={'secondary'}
-						onClick={() => signIn()}
-					>
+					<Button size={'sm'} variant={'secondary'} onClick={() => signIn()}>
 						Sign In
 					</Button>
-					<Button
-						size={'sm'}
-						asChild
-						className='text-foreground'
-					>
+					<Button size={'sm'} asChild className='text-foreground'>
 						<Link href='/auth/signup'>Sign Up</Link>
 					</Button>
 				</>

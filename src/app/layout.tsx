@@ -23,7 +23,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<AuthProvider>
 					<ThemeProvider attribute='class' defaultTheme='dark' enableSystem disableTransitionOnChange>
 						{children}
-
 						<Toaster />
 					</ThemeProvider>
 				</AuthProvider>

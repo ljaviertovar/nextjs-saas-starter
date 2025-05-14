@@ -6,9 +6,9 @@ interface ContentSectionProps {
 	children: React.JSX.Element
 }
 
-export default function ContentSection({ title, desc, children }: ContentSectionProps) {
+export default function PageContent({ title, desc, children }: ContentSectionProps) {
 	return (
-		<div className='flex flex-1 flex-col'>
+		<div className='flex flex-1 flex-col p-4 lg:p-6'>
 			<div className='flex-none'>
 				<h3 className='text-lg font-medium'>{title}</h3>
 				<p className='text-muted-foreground text-sm'>{desc}</p>

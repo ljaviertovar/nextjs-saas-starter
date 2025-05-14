@@ -1,12 +1,10 @@
 'use client'
 
-import Link from 'next/link'
-
 import AuthButtons from './auth/auth-buttons'
-
-import { useScrollPosition } from '@/hooks/use-scroll-position'
 import Navbar from './navbar'
 import Logo from './logo'
+
+import { useScrollPosition } from '@/hooks/use-scroll-position'
 
 export default function Header() {
 	const scrollPosition = useScrollPosition()

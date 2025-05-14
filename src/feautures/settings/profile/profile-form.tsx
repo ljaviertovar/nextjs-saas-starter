@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect } from 'react'
+import { useSession } from 'next-auth/react'
 import { useFieldArray, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -42,11 +44,15 @@ type ProfileFormValues = z.infer<typeof profileFormSchema>
 
 // This can come from your database or API.
 const defaultValues: Partial<ProfileFormValues> = {
-	bio: 'I own a computer.',
+	bio: 'I am a software engineer',
 	urls: [{ value: 'https://hackernoon.com/u/ljaviertovar' }, { value: 'https://github.com/ljaviertovar' }],
 }
 
 export default function ProfileForm() {
+	const { data: session } = useSession()
+
+	console.log('Session:', session)
+
 	const { toast } = useToast()
 
 	const form = useForm<ProfileFormValues>({
@@ -61,12 +67,22 @@ export default function ProfileForm() {
 	})
 
 	async function onSubmit(values: ProfileFormValues) {
-		console.log('Form submitted:', values)
 		toast({
 			title: 'You submitted the following values:',
 			description: JSON.stringify(values, null, 2),
 		})
 	}
+
+	const { setValue } = form
+
+	// Sync session data with the form
+	useEffect(() => {
+		if (session?.user?.username) {
+			setValue('username', session.user.username)
+		} else {
+			setValue('username', session?.user?.name ?? '')
+		}
+	}, [session, setValue])
 
 	return (
 		<Form {...form}>
@@ -78,7 +94,7 @@ export default function ProfileForm() {
 						<FormItem>
 							<FormLabel>Username</FormLabel>
 							<FormControl>
-								<Input placeholder='shadcn' {...field} />
+								<Input placeholder='My user' {...field} />
 							</FormControl>
 							<FormDescription>
 								This is your public display name. It can be your real name or a pseudonym. You can only change this once
@@ -101,9 +117,9 @@ export default function ProfileForm() {
 									</SelectTrigger>
 								</FormControl>
 								<SelectContent>
-									<SelectItem value='m@example.com'>m@example.com</SelectItem>
-									<SelectItem value='m@google.com'>m@google.com</SelectItem>
-									<SelectItem value='m@support.com'>m@support.com</SelectItem>
+									<SelectItem value={`${session?.user.email ?? 'user@example.com'}`}>{`${
+										session?.user.email ?? 'user@example.com'
+									}`}</SelectItem>
 								</SelectContent>
 							</Select>
 							<FormDescription>You can manage verified email addresses in your email settings.</FormDescription>
