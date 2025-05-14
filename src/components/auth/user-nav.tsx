@@ -14,7 +14,7 @@ import {
 } from '../ui/dropdown-menu'
 
 import { UserNavItem } from '@/types'
-import { USER_NAV_ITEMS } from '../../data/constants'
+import { USER_NAV_ITEMS } from '@/data/constants/nav'
 
 interface Props {
 	user: User

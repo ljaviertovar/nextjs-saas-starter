@@ -13,8 +13,9 @@ import { Button } from '@/components/ui/button'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { cn } from '@/lib/utils'
 import { useToast } from '@/components/ui/use-toast'
+
+import { cn } from '@/lib/utils'
 
 const profileFormSchema = z.object({
 	username: z
@@ -51,8 +52,6 @@ const defaultValues: Partial<ProfileFormValues> = {
 export default function ProfileForm() {
 	const { data: session } = useSession()
 
-	console.log('Session:', session)
-
 	const { toast } = useToast()
 
 	const form = useForm<ProfileFormValues>({
@@ -60,6 +59,8 @@ export default function ProfileForm() {
 		defaultValues,
 		mode: 'onChange',
 	})
+
+	const { setValue } = form
 
 	const { fields, append } = useFieldArray({
 		name: 'urls',
@@ -72,8 +73,6 @@ export default function ProfileForm() {
 			description: JSON.stringify(values, null, 2),
 		})
 	}
-
-	const { setValue } = form
 
 	// Sync session data with the form
 	useEffect(() => {
