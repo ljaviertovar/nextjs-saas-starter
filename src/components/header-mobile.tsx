@@ -1,16 +1,18 @@
 'use client'
 
 import { ReactNode, useEffect, useRef, useState } from 'react'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import Link from 'next/link'
 
 import { motion, useCycle } from 'framer-motion'
 
-import { NavItem } from '@/types'
-import { NAV_ITEMS } from '@/data/constants'
-import Logo from './logo'
 import AuthButtons from './auth/auth-buttons'
+import Logo from './logo'
+
 import { useScrollPosition } from '@/hooks/use-scroll-position'
+
+import { NavItem } from '@/types'
+import { NAV_ITEMS } from '@/data/constants/nav'
 
 type MenuItemWithSubMenuProps = {
 	item: NavItem
