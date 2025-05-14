@@ -3,11 +3,11 @@ import { usePathname } from 'next/navigation'
 
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 
-import Logo from '../Logo'
+import Logo from '../logo'
 
 import { cn } from '@/lib/utils'
 import { NavItem } from '@/types'
-import { APP_NAV_ITEMS } from '../../constants'
+import { APP_NAV_ITEMS } from '../../data/constants'
 
 interface Props {
 	isCollapsed: boolean

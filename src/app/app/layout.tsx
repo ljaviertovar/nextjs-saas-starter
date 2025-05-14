@@ -11,11 +11,11 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 	const defaultCollapsed = collapsed ? JSON.parse(collapsed.value) : undefined
 
 	return (
-		<div className='flex flex-col'>
+		<>
 			<Panel defaultLayout={defaultLayout} defaultCollapsed={defaultCollapsed} navCollapsedSize={4}>
 				{children}
 			</Panel>
 			<PanelMobile>{children}</PanelMobile>
-		</div>
+		</>
 	)
 }

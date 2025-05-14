@@ -6,13 +6,13 @@ import { usePathname } from 'next/navigation'
 
 import { motion, useCycle } from 'framer-motion'
 
-import Logo from '../Logo'
+import Logo from '../logo'
 import AuthButtons from '../auth/auth-buttons'
 
 import { useScrollPosition } from '@/hooks/use-scroll-position'
 
 import { NavItem } from '@/types'
-import { APP_NAV_ITEMS } from '@/constants'
+import { APP_NAV_ITEMS } from '@/data/constants'
 
 type MenuItemWithSubMenuProps = {
 	item: NavItem

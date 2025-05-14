@@ -7,8 +7,8 @@ import { usePathname } from 'next/navigation'
 import { motion, useCycle } from 'framer-motion'
 
 import { NavItem } from '@/types'
-import { NAV_ITEMS } from '@/constants'
-import Logo from './Logo'
+import { NAV_ITEMS } from '@/data/constants'
+import Logo from './logo'
 import AuthButtons from './auth/auth-buttons'
 import { useScrollPosition } from '@/hooks/use-scroll-position'
 

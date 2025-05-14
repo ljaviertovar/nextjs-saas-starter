@@ -6,7 +6,7 @@ import AuthButtons from './auth/auth-buttons'
 
 import { useScrollPosition } from '@/hooks/use-scroll-position'
 import Navbar from './navbar'
-import Logo from './Logo'
+import Logo from './logo'
 
 export default function Header() {
 	const scrollPosition = useScrollPosition()

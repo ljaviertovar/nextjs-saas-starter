@@ -13,8 +13,21 @@ import {
 	DropdownMenuTrigger,
 } from '../ui/dropdown-menu'
 
+import { UserNavItem } from '@/types'
+import { USER_NAV_ITEMS } from '../../data/constants'
+
 interface Props {
 	user: User
+}
+
+const UserNavItem = ({ title, href }: UserNavItem) => {
+	return (
+		<DropdownMenuItem>
+			<Link className='block w-full h-6 text-sm text-left' href={href}>
+				{title}
+			</Link>
+		</DropdownMenuItem>
+	)
 }
 
 export function UserNav({ user }: Props) {
@@ -38,12 +51,12 @@ export function UserNav({ user }: Props) {
 
 				<DropdownMenuSeparator />
 
-				<DropdownMenuItem>
-					<Link className='block w-full h-6 text-sm text-left' href='/app/profile'>
-						Profile
-					</Link>
-				</DropdownMenuItem>
+				{USER_NAV_ITEMS.map(item => (
+					<UserNavItem title={item.title} href={item.href} />
+				))}
+
 				<DropdownMenuSeparator />
+
 				<DropdownMenuItem>
 					<Button
 						variant={'ghost'}

@@ -2,7 +2,7 @@ import { ForgotPasswordForm } from '@/components/auth/forgot-password-form'
 import ChangePasswordIcon from '@/components/icons/change-password-icon'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
-import { isLogged } from '@/utils'
+import { isLogged } from '@/utils/auth-utils'
 
 interface Props {
 	searchParams: {

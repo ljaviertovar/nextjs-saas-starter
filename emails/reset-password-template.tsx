@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { Body, Button, Container, Head, Hr, Html, Img, Preview, Section, Text } from '@react-email/components'
 
-import { getBaseUrl } from '@/utils'
+import { getBaseUrl } from '@/utils/auth-utils'
 
 const baseUrl = getBaseUrl()
 
@@ -26,10 +26,7 @@ export const ResetPasswordTemplate = ({ username, resetPasswordToken }: ResetPas
 				<Text style={title}>We have sent this email because you have forgotten your password.</Text>
 				<Text style={paragraph}>You can reset your password with the link below:</Text>
 				<Section style={btnContainer}>
-					<Button
-						style={button}
-						href={`${baseUrl}/auth/reset-password/${resetPasswordToken}`}
-					>
+					<Button style={button} href={`${baseUrl}/auth/reset-password/${resetPasswordToken}`}>
 						Click here to reset
 					</Button>
 				</Section>

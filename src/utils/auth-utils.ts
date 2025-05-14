@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation'
 import { getServerSession } from 'next-auth'
 import crypto from 'crypto'
 
-import { authOptions } from './lib/auth-options'
+import { authOptions } from '../lib/auth-options'
 
 export function getBaseUrl() {
 	return process.env.VERCEL_ENV === 'production'

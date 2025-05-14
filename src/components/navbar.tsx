@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from './ui/navigation-menu'
 
-import { NAV_ITEMS } from '@/constants'
+import { NAV_ITEMS } from '@/data/constants'
 
 export default function Navbar() {
 	return (

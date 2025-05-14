@@ -2,7 +2,7 @@ import * as React from 'react'
 
 import { Body, Button, Container, Head, Hr, Html, Img, Preview, Section, Text } from '@react-email/components'
 
-import { getBaseUrl } from '@/utils'
+import { getBaseUrl } from '@/utils/auth-utils'
 
 const baseUrl = getBaseUrl()
 
@@ -26,10 +26,7 @@ export const VerificationTemplate = ({ username, emailVerificationToken }: Verif
 				<Text style={title}>Welcome to Starter Kit for build a SaaS</Text>
 				<Text style={paragraph}>Please verify your email, with the link below:</Text>
 				<Section style={btnContainer}>
-					<Button
-						style={button}
-						href={`${baseUrl}/auth/verify-email?token=${emailVerificationToken}`}
-					>
+					<Button style={button} href={`${baseUrl}/auth/verify-email?token=${emailVerificationToken}`}>
 						Click here to verify
 					</Button>
 				</Section>

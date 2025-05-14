@@ -1,5 +1,5 @@
 import { LayoutDashboard, Sparkle, Wrench } from 'lucide-react'
-import { NavItem } from './types'
+import { NavItem, UserNavItem } from '../types'
 
 export const NAV_ITEMS: NavItem[] = [
 	{
@@ -25,5 +25,16 @@ export const APP_NAV_ITEMS: NavItem[] = [
 		icon: Wrench,
 		submenu: false,
 		subMenuItems: [],
+	},
+]
+
+export const USER_NAV_ITEMS: UserNavItem[] = [
+	{
+		title: 'Profile',
+		href: '/app/profile',
+	},
+	{
+		title: 'Dashboard',
+		href: '/app/dashboard',
 	},
 ]

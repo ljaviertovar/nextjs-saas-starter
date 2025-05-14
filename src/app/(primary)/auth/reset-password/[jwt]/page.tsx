@@ -5,7 +5,7 @@ import ChangePasswordIcon from '@/components/icons/change-password-icon'
 
 import { verifyValidToken } from '@/actions/auth-actions'
 
-import { isLogged } from '@/utils'
+import { isLogged } from '@/utils/auth-utils'
 
 interface Props {
 	params: {
@@ -29,10 +29,7 @@ export default async function ResetPasswordPage({ params, searchParams }: Props)
 				</CardHeader>
 				<CardContent>
 					<div className='w-full grid place-content-center py-4'>
-						<ChangePasswordIcon
-							size={56}
-							color={`${!isTokenValid ? '#7F1D1D' : 'currentColor'}`}
-						/>
+						<ChangePasswordIcon size={56} color={`${!isTokenValid ? '#7F1D1D' : 'currentColor'}`} />
 					</div>
 
 					{isTokenValid ? (

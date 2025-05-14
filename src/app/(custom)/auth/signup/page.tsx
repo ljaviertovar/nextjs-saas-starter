@@ -5,7 +5,7 @@ import { Metadata } from 'next'
 import { SignUpForm } from '@/components/auth/signup-form'
 import { Button } from '@/components/ui/button'
 
-import { isLogged } from '@/utils'
+import { isLogged } from '@/utils/auth-utils'
 
 export const metadata: Metadata = {
 	title: 'Sign up for My SaaS - Start Now',
@@ -36,10 +36,7 @@ export default async function signUpPage({ searchParams }: Props) {
 						/>
 					</div>
 					<div className='relative z-20 flex items-center text-xl font-medium mb-16'>
-						<Link
-							href='/'
-							className='inline-flex'
-						>
+						<Link href='/' className='inline-flex'>
 							<svg
 								xmlns='http://www.w3.org/2000/svg'
 								viewBox='0 0 24 24'
@@ -57,10 +54,7 @@ export default async function signUpPage({ searchParams }: Props) {
 					</div>
 					<div className='relative z-20 mt-auto'>
 						<blockquote className='space-y-2'>
-							<p
-								className='text-lg shadow'
-								style={{ textShadow: '1px 1px 10px rgba(0,0,0,0.6)' }}
-							>
+							<p className='text-lg shadow' style={{ textShadow: '1px 1px 10px rgba(0,0,0,0.6)' }}>
 								&ldquo;This starter kit has saved me countless hours of work and helped me deliver stunning designs to
 								my clients faster than ever before.&rdquo;
 							</p>
@@ -80,11 +74,7 @@ export default async function signUpPage({ searchParams }: Props) {
 				</div>
 				<div className='w-auto lg:w-[1000px] min-h-screen p-10 grid place-content-center relative'>
 					<div className='absolute right-6 top-6'>
-						<Button
-							size={'sm'}
-							variant={'secondary'}
-							asChild
-						>
+						<Button size={'sm'} variant={'secondary'} asChild>
 							<Link href='/auth/signin'>Sign In</Link>
 						</Button>
 					</div>
@@ -96,17 +86,11 @@ export default async function signUpPage({ searchParams }: Props) {
 						<SignUpForm />
 						<p className='px-8 py-6 text-center text-sm text-muted-foreground'>
 							By clicking continue, you agree to our{' '}
-							<Link
-								href='/terms'
-								className='underline underline-offset-4 hover:text-primary'
-							>
+							<Link href='/terms' className='underline underline-offset-4 hover:text-primary'>
 								Terms of Service
 							</Link>{' '}
 							and{' '}
-							<Link
-								href='/privacy'
-								className='underline underline-offset-4 hover:text-primary'
-							>
+							<Link href='/privacy' className='underline underline-offset-4 hover:text-primary'>
 								Privacy Policy
 							</Link>
 							.

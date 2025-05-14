@@ -53,7 +53,7 @@ export function Panel({ defaultLayout = [20, 80], defaultCollapsed = false, navC
 					<ResizablePanel>
 						<Header />
 						<ScrollArea className='h-[calc(100vh-56px)]'>
-							<section className='p-4 w-full'>{children}</section>
+							<main className='w-full'>{children}</main>
 						</ScrollArea>
 					</ResizablePanel>
 				</ResizablePanelGroup>

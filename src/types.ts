@@ -7,3 +7,8 @@ export type NavItem = {
 	submenu?: boolean
 	subMenuItems?: NavItem[]
 }
+
+export type UserNavItem = {
+	title: string
+	href: string
+}

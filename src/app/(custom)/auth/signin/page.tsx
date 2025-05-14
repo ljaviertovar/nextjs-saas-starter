@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { SignInForm } from '@/components/auth/signin-form'
 
-import { isLogged } from '@/utils'
+import { isLogged } from '@/utils/auth-utils'
 
 export const metadata: Metadata = {
 	title: 'Sign In for My SaaS',
@@ -36,10 +36,7 @@ export default async function SignInPage({ searchParams }: Props) {
 						/>
 					</div>
 					<div className='relative z-20 flex items-center text-xl font-medium mb-16'>
-						<Link
-							href='/'
-							className='inline-flex'
-						>
+						<Link href='/' className='inline-flex'>
 							<svg
 								xmlns='http://www.w3.org/2000/svg'
 								viewBox='0 0 24 24'
@@ -57,10 +54,7 @@ export default async function SignInPage({ searchParams }: Props) {
 					</div>
 					<div className='relative z-20 mt-auto'>
 						<blockquote className='space-y-2'>
-							<p
-								className='text-lg shadow'
-								style={{ textShadow: '1px 1px 10px rgba(0,0,0,0.6)' }}
-							>
+							<p className='text-lg shadow' style={{ textShadow: '1px 1px 10px rgba(0,0,0,0.6)' }}>
 								&ldquo;This starter kit has saved me countless hours of work and helped me deliver stunning designs to
 								my clients faster than ever before.&rdquo;
 							</p>
@@ -80,11 +74,7 @@ export default async function SignInPage({ searchParams }: Props) {
 				</div>
 				<div className='w-auto lg:w-[1000px] min-h-screen p-10 grid place-content-center relative'>
 					<div className='absolute right-6 top-6'>
-						<Button
-							size={'sm'}
-							variant={'secondary'}
-							asChild
-						>
+						<Button size={'sm'} variant={'secondary'} asChild>
 							<Link href='/auth/signup'>Sign Up</Link>
 						</Button>
 					</div>
