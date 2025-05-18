@@ -1,21 +1,36 @@
 import { cookies } from 'next/headers'
 
-import { Panel } from '@/components/app/panel'
-import PanelMobile from '@/components/app/panel-mobile'
+import { AppSidebar } from '@/components/app/app-sidebar'
+import { SidebarProvider } from '@/components/ui/sidebar'
+
+import { Header } from '@/components/app/header'
+
+import { cn } from '@/lib/utils'
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
-	const layout = cookies().get('react-resizable-panels:layout')
-	const collapsed = cookies().get('react-resizable-panels:collapsed')
-
-	const defaultLayout = layout ? JSON.parse(layout.value) : undefined
-	const defaultCollapsed = collapsed ? JSON.parse(collapsed.value) : undefined
+	const sidebarState = cookies().get('sidebar_state')
+	const defaultOpen = sidebarState?.value !== 'false'
 
 	return (
 		<>
-			<Panel defaultLayout={defaultLayout} defaultCollapsed={defaultCollapsed} navCollapsedSize={4}>
-				{children}
-			</Panel>
-			<PanelMobile>{children}</PanelMobile>
+			<SidebarProvider defaultOpen={defaultOpen}>
+				<AppSidebar />
+				<div
+					id='content'
+					className={cn(
+						'ml-auto w-full max-w-full',
+						'peer-data-[state=collapsed]:w-[calc(100%-var(--sidebar-width-icon)-1rem)]',
+						'peer-data-[state=expanded]:w-[calc(100%-var(--sidebar-width))]',
+						'sm:transition-[width] sm:duration-200 sm:ease-linear',
+						'flex h-svh flex-col',
+						'group-data-[scroll-locked=1]/body:h-full',
+						'has-[main.fixed-main]:group-data-[scroll-locked=1]/body:h-svh'
+					)}
+				>
+					<Header />
+					{children}
+				</div>
+			</SidebarProvider>
 		</>
 	)
 }

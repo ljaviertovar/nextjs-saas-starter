@@ -1,7 +1,7 @@
-import { LayoutDashboard, Sparkle, Wrench } from 'lucide-react'
-import { NavItem, UserNavItem } from '@/types'
+import { SidebarData } from '@/types'
+import { LayoutDashboard, Settings, Sparkle, Wrench, UserCog, Boxes } from 'lucide-react'
 
-export const NAV_ITEMS: NavItem[] = [
+export const NAV_ITEMS: any[] = [
 	{
 		title: 'Featured Tools',
 		href: '#featured-tools',
@@ -11,24 +11,48 @@ export const NAV_ITEMS: NavItem[] = [
 	},
 ]
 
-export const APP_NAV_ITEMS: NavItem[] = [
-	{
-		title: 'Dashboard',
-		href: '/app/dashboard',
-		icon: LayoutDashboard,
-		submenu: false,
-		subMenuItems: [],
-	},
-	{
-		title: 'All Tools',
-		href: '/app/all-tools',
-		icon: Wrench,
-		submenu: false,
-		subMenuItems: [],
-	},
-]
+export const SIDEBAR_DATA: SidebarData = {
+	navGroups: [
+		{
+			title: 'General',
+			items: [
+				{
+					title: 'Dashboard',
+					url: '/app/dashboard',
+					icon: LayoutDashboard,
+				},
+				{
+					title: 'Tools',
+					url: '/app/tools',
+					icon: Boxes,
+				},
+			],
+		},
+		{
+			title: 'Other',
+			items: [
+				{
+					title: 'Settings',
+					icon: Settings,
+					items: [
+						{
+							title: 'Profile',
+							url: '/app/settings/profile',
+							icon: UserCog,
+						},
+						{
+							title: 'Account',
+							url: '/app/settings/account',
+							icon: Wrench,
+						},
+					],
+				},
+			],
+		},
+	],
+}
 
-export const USER_NAV_ITEMS: UserNavItem[] = [
+export const USER_NAV_ITEMS: any[] = [
 	{
 		title: 'Profile',
 		href: '/app/settings/profile',

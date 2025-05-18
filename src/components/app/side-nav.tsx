@@ -1,13 +1,12 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 
-import Logo from '@/components/logo'
+import Logo from '../logo'
 
 import { cn } from '@/lib/utils'
 import { NavItem } from '@/types'
-
 import { APP_NAV_ITEMS } from '@/data/constants/nav'
 
 interface Props {

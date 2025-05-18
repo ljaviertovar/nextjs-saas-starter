@@ -1,4 +1,4 @@
-import HeaderMobile from './header-mobile'
+import HeaderMobile from './_header-mobile'
 
 interface Props {
 	children: React.ReactNode

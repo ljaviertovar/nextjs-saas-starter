@@ -45,12 +45,12 @@ export function Panel({ defaultLayout = [20, 80], defaultCollapsed = false, navC
 							setIsCollapsed(false)
 							document.cookie = `react-resizable-panels:collapsed=${JSON.stringify(false)}`
 						}}
-						className={cn(isCollapsed && 'min-w-[72px] transition-all duration-300 ease-in-out')}
+						className={cn(isCollapsed && 'min-w-[72px] transition-all duration-300 ease-in-out', 'w-12')}
 					>
 						<SideNav isCollapsed={isCollapsed} />
 					</ResizablePanel>
 					<ResizableHandle withHandle />
-					<ResizablePanel>
+					<ResizablePanel defaultSize={defaultLayout[1]}>
 						<Header />
 						<ScrollArea className='h-[calc(100vh-56px)]'>
 							<main className='w-full'>{children}</main>

@@ -5,7 +5,6 @@ interface Props {
 }
 
 export default function Logo({ isCollapsed }: Props) {
-	console.log(isCollapsed)
 	return (
 		<Link href='/' className='font-semibold flex flex-none gap-2'>
 			<svg
