@@ -14,7 +14,7 @@ import {
 	SidebarMenuSubItem,
 	useSidebar,
 } from '@/components/ui/sidebar'
-import { Badge } from '../ui/badge'
+import { Badge } from '../../ui/badge'
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -22,7 +22,7 @@ import {
 	DropdownMenuLabel,
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
-} from '../ui/dropdown-menu'
+} from '../../ui/dropdown-menu'
 import { NavCollapsible, NavItem, NavLink, type NavGroup } from '@/types'
 import Link from 'next/link'
 import { ReactNode } from 'react'

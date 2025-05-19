@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers'
 
-import { AppSidebar } from '@/components/app/app-sidebar'
+import { AppSidebar } from '@/components/app/sidebar/app-sidebar'
 import { SidebarProvider } from '@/components/ui/sidebar'
 
 import { Header } from '@/components/app/header'
@@ -19,7 +19,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 					id='content'
 					className={cn(
 						'ml-auto w-full max-w-full',
-						'peer-data-[state=collapsed]:w-[calc(100%-var(--sidebar-width-icon)-1rem)]',
+						'peer-data-[state=collapsed]:w-[calc(100%-var(--sidebar-width-icon))]',
 						'peer-data-[state=expanded]:w-[calc(100%-var(--sidebar-width))]',
 						'sm:transition-[width] sm:duration-200 sm:ease-linear',
 						'flex h-svh flex-col',

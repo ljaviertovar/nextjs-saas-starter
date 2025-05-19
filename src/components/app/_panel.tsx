@@ -7,7 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area'
 import { TooltipProvider } from '@radix-ui/react-tooltip'
 
 import Header from './header'
-import SideNav from './side-nav'
+import SideNav from './_side-nav'
 
 import { cn } from '@/lib/utils'
 
