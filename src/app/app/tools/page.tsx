@@ -1,15 +1,14 @@
-export default async function AllToolsPage() {
+import PageHeader from '@/components/app/page-header'
+import PageContent from '@/feautures/components/page-content'
+import Tools from '@/feautures/tools'
+
+export default async function ToolsPage() {
 	return (
-		<section className='mx-auto flex w-full flex-col items-center gap-2 pt-4'>
-			<h1 className='text-center text-2xl font-bold leading-tight tracking-tighter md:text-4xl lg:leading-[1.1]'>
-				All Tools
-			</h1>
-			<span
-				className='max-w-[750px] text-center text-lg text-muted-foreground sm:text-xl'
-				style={{ display: 'inline-block', verticalAlign: 'top', textDecoration: 'inherit' }}
-			>
-				Find Most Popular and Featured Tools by Category
-			</span>
-		</section>
+		<>
+			<PageHeader title='Tools' desc='Find Most Popular and Featured Tools by Category.' />
+			<PageContent>
+				<Tools />
+			</PageContent>
+		</>
 	)
 }

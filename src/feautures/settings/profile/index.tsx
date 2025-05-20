@@ -1,5 +1,5 @@
 import ProfileForm from './profile-form'
 
-export default function SettingsProfile() {
+export default function Profile() {
 	return <ProfileForm />
 }
