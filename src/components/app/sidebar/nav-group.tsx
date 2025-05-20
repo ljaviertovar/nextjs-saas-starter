@@ -121,8 +121,8 @@ const SidebarMenuCollapsedDropdown = ({ item, href }: { item: NavCollapsible; hr
 					<DropdownMenuSeparator />
 					{item.items.map(sub => (
 						<DropdownMenuItem key={`${sub.title}-${sub.url}`} asChild>
-							<Link href={sub.url} className={`${checkIsActive(href, sub) ? 'bg-secondary' : ''}`}>
-								{sub.icon && <sub.icon />}
+							<Link href={sub.url} className={`${checkIsActive(href, sub) ? 'bg-secondary' : ''} gap-2`}>
+								{sub.icon && <sub.icon className='w-4' />}
 								<span className='max-w-52 text-wrap'>{sub.title}</span>
 								{sub.badge && <span className='ml-auto text-xs'>{sub.badge}</span>}
 							</Link>
