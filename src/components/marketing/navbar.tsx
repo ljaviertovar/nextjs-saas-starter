@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from './ui/navigation-menu'
+import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from '../ui/navigation-menu'
 
 import { NAV_ITEMS } from '@/data/constants/nav'
 

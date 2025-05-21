@@ -2,8 +2,8 @@ import Link from 'next/link'
 import { signOut } from 'next-auth/react'
 import { User } from '@prisma/client'
 
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
-import { Button } from '../ui/button'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Button } from '@/components/ui/button'
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -11,19 +11,19 @@ import {
 	DropdownMenuLabel,
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
-} from '../ui/dropdown-menu'
+} from '@/components/ui/dropdown-menu'
 
-import { UserNavItem } from '@/types'
+import { NavItem } from '@/types'
 import { USER_NAV_ITEMS } from '@/data/constants/nav'
 
 interface Props {
 	user: User
 }
 
-const UserNavItem = ({ title, href }: UserNavItem) => {
+const UserNavItem = ({ title, url }: NavItem) => {
 	return (
 		<DropdownMenuItem>
-			<Link className='block w-full h-6 text-sm text-left' href={href}>
+			<Link className='block w-full h-6 text-sm text-left' href={url}>
 				{title}
 			</Link>
 		</DropdownMenuItem>
@@ -52,7 +52,7 @@ export function UserNav({ user }: Props) {
 				<DropdownMenuSeparator />
 
 				{USER_NAV_ITEMS.map(item => (
-					<UserNavItem title={item.title} href={item.href} />
+					<UserNavItem title={item.title} url={item.url} />
 				))}
 
 				<DropdownMenuSeparator />

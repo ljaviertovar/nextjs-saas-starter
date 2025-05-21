@@ -3,7 +3,7 @@
 import { Separator } from '@/components/ui/separator'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 
-import AuthButtons from '@/components/auth/auth-buttons'
+import AuthButtons from '@/feautures/auth/auth-buttons'
 
 import { useScrollPosition } from '@/hooks/use-scroll-position'
 

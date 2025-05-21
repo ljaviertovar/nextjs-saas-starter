@@ -5,7 +5,7 @@ import { signIn, useSession } from 'next-auth/react'
 import { User } from '@prisma/client'
 
 import { Skeleton } from '@/components/ui/skeleton'
-import { Button } from '../ui/button'
+import { Button } from '../../components/ui/button'
 import { UserNav } from './user-nav'
 
 export default function AuthButtons() {

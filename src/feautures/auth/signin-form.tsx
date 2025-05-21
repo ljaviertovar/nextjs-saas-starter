@@ -8,11 +8,11 @@ import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 
 import GoogleButtonSignin from './google-button-signin'
-import { Form, FormControl, FormField, FormItem, FormMessage } from '../ui/form'
-import { Button } from '../ui/button'
-import { Input } from '../ui/input'
-import { Icons } from '../icons'
-import { SpinnerIcon } from '../icons/'
+import { Form, FormControl, FormField, FormItem, FormMessage } from '../../components/ui/form'
+import { Button } from '../../components/ui/button'
+import { Input } from '../../components/ui/input'
+import { Icons } from '../../components/icons'
+import { SpinnerIcon } from '../../components/icons'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -153,19 +153,13 @@ export function SignInForm({ callbackUrl }: Props) {
 					</div>
 
 					<p className='text-center text-sm text-muted-foreground'>
-						<Link
-							href='/auth/forgot-password'
-							className='underline underline-offset-4 hover:text-primary'
-						>
+						<Link href='/auth/forgot-password' className='underline underline-offset-4 hover:text-primary'>
 							Forgot Password?
 						</Link>
 					</p>
 
 					<div className='mt-4 flex flex-col gap-4'>
-						<Button
-							className='text-foreground'
-							disabled={isLoading}
-						>
+						<Button className='text-foreground' disabled={isLoading}>
 							{isLoading && (
 								<span className='animate-spin'>
 									<SpinnerIcon size={16} />
@@ -173,10 +167,7 @@ export function SignInForm({ callbackUrl }: Props) {
 							)}
 							Sign In
 						</Button>
-						<GoogleButtonSignin
-							typeSubmit='signin'
-							callbackUrl={callbackUrl}
-						/>
+						<GoogleButtonSignin typeSubmit='signin' callbackUrl={callbackUrl} />
 					</div>
 				</div>
 			</form>

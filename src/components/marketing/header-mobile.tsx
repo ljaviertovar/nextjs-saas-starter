@@ -6,8 +6,8 @@ import Link from 'next/link'
 
 import { motion, useCycle } from 'framer-motion'
 
-import AuthButtons from './auth/auth-buttons'
-import Logo from './logo'
+import AuthButtons from '../../feautures/auth/auth-buttons'
+import Logo from '../logo'
 
 import { useScrollPosition } from '@/hooks/use-scroll-position'
 
@@ -159,7 +159,7 @@ const MenuItemWithSubMenu: React.FC<MenuItemWithSubMenuProps> = ({ item, toggleO
 			<MenuItem>
 				<button className='flex w-full text-2xl' onClick={() => setSubMenuOpen(!subMenuOpen)}>
 					<div className='flex flex-row justify-between w-full items-center'>
-						<span className={`${pathname.includes(item.href) ? 'font-bold' : ''}`}>{item.title}</span>
+						<span className={`${pathname.includes(item.url) ? 'font-bold' : ''}`}>{item.title}</span>
 						{/* <div className={`${subMenuOpen && 'rotate-180'}`}>
               <Icon icon="lucide:chevron-down" width="24" height="24" />
             </div> */}

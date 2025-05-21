@@ -1,5 +1,5 @@
-import Header from '@/components/header'
-import HeaderMobile from '@/components/header-mobile'
+import Header from '@/components/marketing/header'
+import HeaderMobile from '@/components/marketing/header-mobile'
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
 	return (

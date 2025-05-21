@@ -8,11 +8,6 @@ export type NavItemO = {
 	subMenuItems?: NavItem[]
 }
 
-type UserNavItem = {
-	title: string
-	href: string
-}
-
 interface BaseNavItem {
 	title: string
 	badge?: string

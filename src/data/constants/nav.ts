@@ -1,4 +1,4 @@
-import { SidebarData } from '@/types'
+import { NavItem, SidebarData } from '@/types'
 import { LayoutDashboard, Settings, Sparkle, Wrench, UserCog, Boxes } from 'lucide-react'
 
 export const NAV_ITEMS: any[] = [
@@ -18,12 +18,12 @@ export const SIDEBAR_DATA: SidebarData = {
 			items: [
 				{
 					title: 'Dashboard',
-					url: '/app/dashboard',
+					url: '/dashboard',
 					icon: LayoutDashboard,
 				},
 				{
 					title: 'Tools',
-					url: '/app/tools',
+					url: '/tools',
 					icon: Boxes,
 				},
 			],
@@ -37,12 +37,12 @@ export const SIDEBAR_DATA: SidebarData = {
 					items: [
 						{
 							title: 'Profile',
-							url: '/app/settings/profile',
+							url: '/settings/profile',
 							icon: UserCog,
 						},
 						{
 							title: 'Account',
-							url: '/app/settings/account',
+							url: '/settings/account',
 							icon: Wrench,
 						},
 					],
@@ -52,13 +52,13 @@ export const SIDEBAR_DATA: SidebarData = {
 	],
 }
 
-export const USER_NAV_ITEMS: any[] = [
+export const USER_NAV_ITEMS: NavItem[] = [
 	{
 		title: 'Profile',
-		href: '/app/settings/profile',
+		url: '/settings/profile',
 	},
 	{
 		title: 'Dashboard',
-		href: '/app/dashboard',
+		url: '/dashboard',
 	},
 ]

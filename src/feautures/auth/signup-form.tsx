@@ -6,12 +6,12 @@ import * as z from 'zod'
 import { passwordStrength } from 'check-password-strength'
 
 import GoogleButtonSignin from './google-button-signin'
-import { Form, FormControl, FormField, FormItem, FormMessage } from '../ui/form'
-import PasswordStrength from './password-strength'
-import { Button } from '../ui/button'
-import { Input } from '../ui/input'
-import { Icons } from '../icons'
-import { SpinnerIcon } from '../icons/'
+import { Form, FormControl, FormField, FormItem, FormMessage } from '../../components/ui/form'
+import PasswordStrength from './password/password-strength'
+import { Button } from '../../components/ui/button'
+import { Input } from '../../components/ui/input'
+import { Icons } from '../../components/icons'
+import { SpinnerIcon } from '../../components/icons'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -221,10 +221,7 @@ export function SignUpForm() {
 						/>
 					</div>
 					<div className='mt-4 flex flex-col gap-4'>
-						<Button
-							className='text-foreground mt-4'
-							disabled={isLoading}
-						>
+						<Button className='text-foreground mt-4' disabled={isLoading}>
 							{isLoading && (
 								<span className='animate-spin'>
 									<SpinnerIcon size={16} />

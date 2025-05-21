@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { ResetPasswordForm } from '@/components/auth/reset-password-form'
+import { ResetPasswordForm } from '@/feautures/auth/password/reset-password-form'
 
 import ChangePasswordIcon from '@/components/icons/change-password-icon'
 
