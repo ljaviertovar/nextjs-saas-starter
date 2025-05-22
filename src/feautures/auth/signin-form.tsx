@@ -7,12 +7,14 @@ import { signIn } from 'next-auth/react'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Icons } from '@/components/icons'
+
 import GoogleButtonSignin from './google-button-signin'
-import { Form, FormControl, FormField, FormItem, FormMessage } from '../../components/ui/form'
-import { Button } from '../../components/ui/button'
-import { Input } from '../../components/ui/input'
-import { Icons } from '../../components/icons'
-import { SpinnerIcon } from '../../components/icons'
+
+import { SpinnerIcon } from '@/components/icons/index'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -78,7 +80,7 @@ export function SignInForm({ callbackUrl }: Props) {
 				description: 'Redirecting you to your dashboard!',
 			})
 
-			router.push(callbackUrl ? callbackUrl : '/')
+			router.push(callbackUrl ? callbackUrl : '/dashboard')
 		} catch (error) {
 			console.log({ error })
 			toast({

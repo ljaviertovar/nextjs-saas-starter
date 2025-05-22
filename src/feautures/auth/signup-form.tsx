@@ -228,10 +228,7 @@ export function SignUpForm() {
 							)}
 							Sign Up
 						</Button>
-						<GoogleButtonSignin
-							typeSubmit='signup'
-							// callbackUrl={callbackUrl}
-						/>
+						<GoogleButtonSignin typeSubmit='signup' callbackUrl={'/dashboard'} />
 					</div>
 				</div>
 			</form>

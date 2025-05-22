@@ -19,7 +19,7 @@ export function generateSecureToken(length = 48) {
 export async function isLogged(callbackUrl: string) {
 	const session = await getServerSession(authOptions)
 	if (session && session.user) {
-		redirect(callbackUrl || '/')
+		redirect(callbackUrl || '/dashboard')
 	}
 }
 
