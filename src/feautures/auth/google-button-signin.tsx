@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { signIn } from 'next-auth/react'
 
-import { Button } from '../../components/ui/button'
-import { GoogleIcon, SpinnerIcon } from '../../components/icons'
+import { Button } from '@/components/ui/button'
+import { SpinnerIcon, GoogleIcon } from '@/components/icons/index'
 
 interface Props {
 	typeSubmit: 'signin' | 'signup'

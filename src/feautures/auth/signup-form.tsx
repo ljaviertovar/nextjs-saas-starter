@@ -1,18 +1,19 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import * as z from 'zod'
 import { passwordStrength } from 'check-password-strength'
+import * as z from 'zod'
+
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 
 import GoogleButtonSignin from './google-button-signin'
-import { Form, FormControl, FormField, FormItem, FormMessage } from '../../components/ui/form'
 import PasswordStrength from './password/password-strength'
-import { Button } from '../../components/ui/button'
-import { Input } from '../../components/ui/input'
-import { Icons } from '../../components/icons'
-import { SpinnerIcon } from '../../components/icons'
+import SpinnerIcon from '@/components/icons/spinner-icon'
+import { Icons } from '@/components/icons'
 
+import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import { useToast } from '@/components/ui/use-toast'
@@ -54,8 +55,6 @@ export function SignUpForm() {
 	const [passStrength, setPassStrength] = useState(0)
 	const [isVisiblePass, setIsVisiblePass] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
-
-	// const baseUrl = getBaseUrl()
 
 	const { toast } = useToast()
 

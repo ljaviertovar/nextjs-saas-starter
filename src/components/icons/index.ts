@@ -1,2 +1,5 @@
+export { default as ChangePasswordIcon } from './change-password-icon'
+export { default as EmailCheckIcon } from './email-check-icon'
+export { default as EmaillWarningIcon } from './emaill-warning-icon'
 export { default as GoogleIcon } from './google-icon'
 export { default as SpinnerIcon } from './spinner-icon'
