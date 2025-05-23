@@ -11,7 +11,7 @@ import { Input } from '@/components/ui/input'
 import GoogleButtonSignin from './google-button-signin'
 import PasswordStrength from './password/password-strength'
 import SpinnerIcon from '@/components/icons/spinner-icon'
-import { Icons } from '@/components/icons'
+import { Eye, EyeOff, KeySquare, Mail, User } from 'lucide-react'
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -112,7 +112,7 @@ export function SignUpForm() {
 							<FormItem>
 								<FormControl>
 									<div className='flex items-center gap-2'>
-										<Icons.user
+										<User
 											className={`${form.formState.errors.username ? 'text-destructive' : 'text-muted-foreground'} `}
 										/>
 										<Input
@@ -135,7 +135,7 @@ export function SignUpForm() {
 								<FormItem>
 									<FormControl>
 										<div className='flex items-center gap-2'>
-											<Icons.email
+											<Mail
 												className={`${form.formState.errors.email ? 'text-destructive' : 'text-muted-foreground'} `}
 											/>
 											<Input
@@ -159,7 +159,7 @@ export function SignUpForm() {
 								<FormItem>
 									<FormControl>
 										<div className='flex items-center gap-2'>
-											<Icons.key
+											<KeySquare
 												className={`${form.formState.errors.password ? 'text-destructive' : 'text-muted-foreground'} `}
 											/>
 											<Input
@@ -169,14 +169,14 @@ export function SignUpForm() {
 												{...field}
 											/>
 											{isVisiblePass ? (
-												<Icons.eyeOff
+												<EyeOff
 													onClick={toggleVisblePass}
 													className={`${
 														form.formState.errors.password ? 'text-destructive' : 'text-muted-foreground'
 													} `}
 												/>
 											) : (
-												<Icons.eye
+												<Eye
 													onClick={toggleVisblePass}
 													className={`${
 														form.formState.errors.password ? 'text-destructive' : 'text-muted-foreground'
@@ -201,7 +201,7 @@ export function SignUpForm() {
 								<FormItem>
 									<FormControl>
 										<div className='flex items-center gap-2'>
-											<Icons.key
+											<KeySquare
 												className={`${
 													form.formState.errors.confirmPassword ? 'text-destructive' : 'text-muted-foreground'
 												} `}

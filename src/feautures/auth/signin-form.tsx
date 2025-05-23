@@ -10,11 +10,11 @@ import * as z from 'zod'
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Icons } from '@/components/icons'
 
 import GoogleButtonSignin from './google-button-signin'
 
-import { SpinnerIcon } from '@/components/icons/index'
+import { Eye, EyeOff, KeySquare, Mail } from 'lucide-react'
+import { SpinnerIcon } from '@/components/icons'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -105,7 +105,7 @@ export function SignInForm({ callbackUrl }: Props) {
 								<FormItem>
 									<FormControl>
 										<div className='flex items-center gap-2'>
-											<Icons.email
+											<Mail
 												className={`${form.formState.errors.email ? 'text-destructive' : 'text-muted-foreground'} `}
 											/>
 											<Input
@@ -128,7 +128,7 @@ export function SignInForm({ callbackUrl }: Props) {
 							render={({ field }) => (
 								<FormControl>
 									<div className='flex items-center gap-2'>
-										<Icons.key
+										<KeySquare
 											className={`${form.formState.errors.password ? 'text-destructive' : 'text-muted-foreground'} `}
 										/>
 										<Input
@@ -138,12 +138,12 @@ export function SignInForm({ callbackUrl }: Props) {
 											{...field}
 										/>
 										{isVisiblePass ? (
-											<Icons.eyeOff
+											<EyeOff
 												onClick={toggleVisblePass}
 												className={`${form.formState.errors.password ? 'text-destructive' : 'text-muted-foreground'} `}
 											/>
 										) : (
-											<Icons.eye
+											<Eye
 												onClick={toggleVisblePass}
 												className={`${form.formState.errors.password ? 'text-destructive' : 'text-muted-foreground'} `}
 											/>
