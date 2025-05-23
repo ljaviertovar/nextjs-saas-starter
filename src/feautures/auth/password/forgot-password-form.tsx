@@ -3,15 +3,18 @@
 import { useState } from 'react'
 import * as z from 'zod'
 
-import { Form, FormControl, FormField, FormItem, FormMessage } from '../../../components/ui/form'
-import { Input } from '../../../components/ui/input'
-import { Button } from '../../../components/ui/button'
-import { Icons } from '../../../components/icons'
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
+import { SpinnerIcon } from '@/components/icons'
 
+import { useToast } from '@/components/ui/use-toast'
 import { useForm } from 'react-hook-form'
+
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useToast } from '../../../components/ui/use-toast'
+
 import { forgotPassword } from '@/actions/auth-actions'
+import { Mail } from 'lucide-react'
 
 const formSchema = z.object({
 	email: z.string({ required_error: 'Email is required' }).email('Please enter a valid email address'),
@@ -63,7 +66,7 @@ export function ForgotPasswordForm() {
 							<FormItem>
 								<FormControl>
 									<div className='flex items-center gap-2'>
-										<Icons.email
+										<Mail
 											className={`${form.formState.errors.email ? 'text-destructive' : 'text-muted-foreground'} `}
 										/>
 										<Input
@@ -80,8 +83,12 @@ export function ForgotPasswordForm() {
 					/>
 				</div>
 
-				<Button className='w-full text-foreground mt-4' disabled={isLoading}>
-					{isLoading && <Icons.spinner className='mr-2 h-4 w-4 animate-spin' />}
+				<Button className='text-foreground mt-4' disabled={isLoading}>
+					{isLoading && (
+						<span className='animate-spin'>
+							<SpinnerIcon size={16} />
+						</span>
+					)}
 					Submit
 				</Button>
 			</form>

@@ -3,8 +3,7 @@ import { Inter } from 'next/font/google'
 
 import { Toaster } from '@/components/ui/toaster'
 
-import AuthProvider from '@/components/auth-provider'
-import { ThemeProvider } from '@/components/theme-provider'
+import { ThemeProvider, AuthProvider } from '@/providers'
 
 const inter = Inter({ subsets: ['latin'] })
 

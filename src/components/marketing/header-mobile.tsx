@@ -7,7 +7,7 @@ import Link from 'next/link'
 import { motion, useCycle } from 'framer-motion'
 
 import AuthButtons from '../../feautures/auth/auth-buttons'
-import Logo from '../logo'
+import Logo from '../commons/logo'
 
 import { useScrollPosition } from '@/hooks/use-scroll-position'
 

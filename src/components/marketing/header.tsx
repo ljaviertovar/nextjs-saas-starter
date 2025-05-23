@@ -2,7 +2,7 @@
 
 import AuthButtons from '../../feautures/auth/auth-buttons'
 import Navbar from './navbar'
-import Logo from '../logo'
+import Logo from '../commons/logo'
 
 import { useScrollPosition } from '@/hooks/use-scroll-position'
 

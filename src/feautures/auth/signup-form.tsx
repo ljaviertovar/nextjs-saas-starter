@@ -10,7 +10,7 @@ import { Input } from '@/components/ui/input'
 
 import GoogleButtonSignin from './google-button-signin'
 import PasswordStrength from './password/password-strength'
-import SpinnerIcon from '@/components/icons/spinner-icon'
+import { SpinnerIcon } from '@/components/icons'
 import { Eye, EyeOff, KeySquare, Mail, User } from 'lucide-react'
 
 import { useForm } from 'react-hook-form'

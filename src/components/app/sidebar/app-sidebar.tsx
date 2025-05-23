@@ -3,7 +3,7 @@
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail, useSidebar } from '@/components/ui/sidebar'
 import AppSidebarFooter from './app-sidebar-footer'
 import { NavGroup } from './nav-group'
-import Logo from '@/components/logo'
+import Logo from '@/components/commons/logo'
 
 import { SIDEBAR_DATA } from '@/data/constants'
 
