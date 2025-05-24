@@ -21,7 +21,7 @@ export const Header = () => {
 					: 'bg-trasparent '
 			)}
 		>
-			<SidebarTrigger variant='secondary' className='scale-125 sm:scale-100' />
+			<SidebarTrigger variant='outline' className='h-8 w-8 p-1 bg-transparent' />
 			<Separator orientation='vertical' className='h-6' />
 			<div className='flex-1'>
 				<AuthButtons />
