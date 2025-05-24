@@ -1,0 +1,35 @@
+{
+	"display": "standalone",
+	"scope": "/",
+	"start_url": "/",
+	"description": "Easily find the right words and relevant hashtags for your social media posts with Taggy and increase the visibility of your content.",
+	"categories": ["lifestyle", "personalization", "photo", "social", "utilities"],
+	"orientation": "any",
+	"name": "Starter kid for building a SaaS",
+	"short_name": "My Sass",
+	"theme_color": "#FFFFFF",
+	"background_color": "#171717",
+	"icons": [
+		{
+			"src": "/favicon/android-chrome-192x192.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "/favicon/apple-touch-icon.png",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "/favicon/favicon-16x16.png",
+			"sizes": "16x16",
+			"type": "image/png"
+		},
+		{
+			"src": "/favicon/favicon-32x32.png",
+			"sizes": "32x32",
+			"type": "image/png"
+		}
+	],
+	"splash_pages": null
+}
